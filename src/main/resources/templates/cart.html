@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head"></head>
+    <body>
+        <header th:replace="fragments :: header"></header>
+
+        <div class="container kosik">
+            <div class="row">
+                <div style="background-color:#eda4ae;" class="cudlik col-sm-4"><a href="cart"><b>KOŠÍK</b></a></div>
+                <div class="cudlik col-sm-4">DODACÍ ÚDAJE</div>
+                <div class="cudlik col-sm-4">SOUHRN OBJEDNÁVKY</div>
+            </div>
+            <h2>Košík</h2>
+            <hr>
+            <div class="cartList">
+                <!-- TO BE FILLED BY THE BROWSER-->
+            </div>
+            <img id="donutWorry" src="img/donutWorry.png" class="visible d-md-none">
+            <div class="pokracovat "><a href="deliveryDetails">Pokračovat ></a></div>
+            <div class="cleaner"></div>
+        </div>
+        <footer th:replace="fragments :: footer"></footer>
+        <script src="js/cart-functions.js" defer></script>
+        <script src="js/cart.js" defer></script>
+    </body>
+</html>

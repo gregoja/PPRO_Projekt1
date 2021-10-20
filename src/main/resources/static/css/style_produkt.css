@@ -1,0 +1,300 @@
+*{
+	font-family: 'Barlow', sans-serif;
+}
+@font-face {
+    font-family: JT_Marine;
+    src: url("JTMarnie-Light.ttf"); 
+}
+.cleaner{
+	clear: both;
+}
+.bg-light{
+	background-color: rgba(233, 167, 176, 0.5) !important;
+}
+.navbar-light .navbar-toggler{
+	border-color: #EDEDED;
+}
+.navbar-light .navbar-toggler-icon{
+	background-image: url('../obrazky/hamburger_menu.svg');
+}
+.navbar-light .navbar-nav .nav-link{
+	text-align: center;
+	color: white;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+	background-color: rgba(255, 255, 255, 0.3);
+	color: white;
+}
+.navbar-light .navbar-nav .nav-link.disabled, .navbar-light .navbar-nav .nav-link:focus {
+  color: white;
+}
+#filter{
+	background-color: #e0e0e0 !important;
+}
+#filter #sipka{
+	background-image: url('../obrazky/sipka.png');
+}
+#filter #border{
+	border: none;
+}
+h1{
+	font-family: JT_Marine;
+	color: white;
+	text-align: center;
+}
+.nadpis{
+	width: 309px;
+	margin: auto;
+	margin-top: 80px;
+	background-color: rgba(233, 167, 176, 0.5);
+}
+.odkazy{
+	margin-top: 30px;
+}
+.card{
+	margin: auto;
+	border: none;
+}
+.card-body{
+	padding: 0;
+	margin: 1.25rem 0 1.25rem 0;
+}
+.btn{
+	width: 258px;
+	border-radius: 0;
+	background-color: #e4949f;
+	border: none;
+	padding: .400rem .75rem;
+	font-size: 18px;
+}
+.btn:hover{
+	background-color: #eda4ae;
+	font-weight: bold;
+}
+.card-img-top{
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: none;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #eda4ae;
+  border: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #eda4ae;
+  border: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+.odkazy .card .card-body img{
+
+	display: none;
+}
+.odkazy .card .card-body img:hover{
+	display: block;
+}
+h2{
+	text-align: center;
+	margin-top: 20px;
+}
+.obr_pro{
+	margin-bottom: 20px;
+}
+.soupni{
+	margin-top: 20px;
+}
+.cena{
+	font-weight: 200;
+	font-size: 25px;
+}
+.mnozstvi{
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+.prostred{
+	display: table;
+	margin: auto;
+}
+.mnozstvi .form-control{
+	width: 100px;
+}
+#koupit{
+	width: 167px;
+}
+.recenze h2{
+	margin-top: 25px;
+}
+.hvezdy{
+	height: 20px;
+	width: auto;
+}
+.barva{
+	background-color: #5e6768;
+	color: white;
+	padding-top: 10px;
+}
+.barva img{
+	float: left;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+.podsebe{
+	display: table;
+}
+.barva p{
+	margin-top: 10px;
+}
+iframe{
+	margin-top: 20px;
+	width: 100%;
+	height: 270px;
+}
+.copyright{
+	text-align: right;
+	margin-right: 10px;
+}
+.obr_pro{
+	display: table;
+	margin: auto;
+	width: 300px;
+	height: auto;
+}
+.sirka{
+	width: 290px;
+	margin: auto;
+}
+@media only screen and (min-width: 576px){
+	.btn{
+		width: 510px;
+	}
+	.centrace{
+		width: 370px;
+	}
+	.slevanov img{
+		margin: auto;
+	}
+	.zmensit{
+		width: 258px;
+		margin: auto;
+		display: table;
+	}
+	iframe{
+		width: 360px;
+		height: 300px;
+	}
+	.tag p, .novinka p{
+		position: relative;
+		top: 40px;
+		left: 320px;
+	}
+}
+@media only screen and (min-width: 768px){
+	.btn{
+		width: 210px;
+	}
+	.centrace{
+		width: 100%;
+		margin-top: 10px;
+	}
+	.soupni{
+		margin-top: 20px;
+	}
+	.chvastani{
+		background: url('../obrazky/chvastani_pc.jpg') no-repeat center center fixed; ;
+		width: 100%;
+		height: 330px;
+		background-size: cover;
+		padding: 30px 0 15px 0;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	}
+	.odkazy{
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+	.tag p, .novinka p{
+		position: relative;
+		top: 40px;
+		left: 220px;
+	}
+	.posun{
+		margin-top: 20px;
+	}
+	.recenze h3{
+		float: left;
+	}
+	.hvezdy{
+		margin-left: 15px;
+	}
+}
+@media only screen and (min-width: 992px){
+	.btn{
+		width: 18rem;
+	}
+	.soupni{
+		margin: auto;
+		margin-top: 20px;
+	}
+	.tag p, .novinka p{
+		position: relative;
+		top: 40px;
+		left: 300px;
+	}
+	.posun{
+		margin: auto;
+		width: 776px;
+	}
+	#filter{
+		 display: none;
+	}
+	.filtrovani{
+		background-color: #e0e0e0;
+	}
+
+}
+@media only screen and (min-width: 1200px){
+	.img_header{
+	background-image: url('../obrazky/header_pc.jpg');
+	max-width: 100%;
+	background-size: cover;
+	}
+	h1{
+		font-size: 4em;
+	}
+	.nadpis{
+		width: 600px;
+		/*margin-top: 125px;*/
+	}
+	.btn{
+		width: 350px;
+	}
+	.card{
+		margin-right: px;
+	}
+	.prostred{
+		display: block;
+		margin-top: 20px;
+	}
+	.recenze h2{
+		margin-top: 40px;
+	}
+	.recenze{
+		margin-bottom: 20px;
+	}
+	.obr_ved{
+		display: table;
+	}
+	
+}

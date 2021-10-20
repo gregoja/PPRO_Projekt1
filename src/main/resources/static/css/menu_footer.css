@@ -1,0 +1,468 @@
+/* menu */
+.prvni_menu
+{
+    background-color: rgba(233, 167, 176, 0.5);
+    height: 80px;
+}
+nav ul li
+{
+    list-style: none;
+}
+.seznam_menu
+{
+    width:75%;
+    margin:auto;
+    display:flex;
+    justify-content: space-between;
+}
+.seznam_menu li a 
+{
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+
+}
+.seznam_menu li 
+{
+    padding-top: 20px;
+}
+.seznam_menu li a:hover
+{
+    color: #fcfcfc;
+}
+.link
+{
+    position:relative;
+    height: 100%;
+}
+.link:after
+{
+    content: '';
+    position: absolute;
+    width: 0; height: 3px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #fcfcfc;
+    -webkit-transition: width .2s ease;
+}
+.link:hover:after
+{
+    width: 100%;
+    left: 0;
+    background: #fcfcfc;
+}
+.burger
+{
+    display:none;
+}
+.menu_neviditelne 
+{
+    max-height: 0;
+    overflow: hidden;
+    transition: all 300ms ease-in-out;
+}
+.menu 
+{
+    cursor:pointer;
+}
+
+.menu_viditelne 
+{
+    max-height: 500px;
+}
+.table{
+    display:flex;
+    margin: auto;
+    width: 35%;
+}
+.footerGroup1{
+    align-content: space-between;
+    width: 20rem;
+}
+.footerGroup2{
+    width: 20rem;
+    margin-left: 5rem;
+}
+.footerHouse{
+    margin-bottom: 4rem;
+    margin-top: 1rem;
+}
+.registrace_form{
+    width: 700px;
+    margin:auto;
+    margin-top:3rem;
+    margin-bottom:3rem;
+}
+.registrace_form input[type="text"], .registrace_form input[type="password"], .registrace_form input[type="email"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box
+}
+.registrace_form input[type="submit"] {
+    width: 100%;
+    background-color: rgb(233, 167, 176);
+    opacity: 1;
+    color:white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+.registrace_form input[type="submit"]:hover{
+    background-color: rgba(233, 167, 176,0.8);
+}
+.userPanel{
+    width: 80%;
+    margin:auto;
+}
+.userPanel .userPanelButton {
+    background: none;
+    border: none;
+    color: black;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.userPanel .loginButton{
+    float: right;
+}
+.userPanel .userPanelButton:hover{
+    font-weight: 600;
+    cursor:pointer;
+}
+.userPanelWrapper{
+    background-color: rgba(233, 167, 176,0.1);
+}
+.administraceArticle{
+    min-height: 300px;
+}
+.menu_neviditelne{
+    padding:0;
+}
+.burger{
+    margin: 0;
+}
+.cartItems{
+    display: inline-block;
+    z-index: 1;
+    background-color: rgba(227, 118, 133,1);
+    position: relative;
+    left:-11px;
+    top:-16px;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    border-radius: 50%;
+    text-align: center;
+    transition: transform .8s ease-in-out
+}
+.shoppingCart a:hover span{
+    background-color: rgb(219, 77, 96);
+}
+.cartItemChanged{
+    transform: rotateY(360deg);
+}
+.filtrovani{
+    background-color: #e0e0e0;
+    display: block;
+    padding-bottom: 35px;
+    float: left;
+    margin-right: 15px;
+    padding-top: 20px;
+}
+.filtraceGroup{
+    margin-left: 0.5rem;
+    padding-right: 5rem;
+}
+.filtraceGroup label{
+    margin-bottom: 0;
+}
+.dataLimiter{
+    margin:auto;
+    margin-top:3rem;
+    margin-bottom:2rem;
+}
+.dataLimiter input[type="text"]{
+    width: 30px;
+    text-align: center;
+} 
+.text-uppercase{
+    text-align: left; 
+}
+footer a{
+    text-decoration: none;
+    color:white;
+}
+footer a:hover{
+    color:white;
+}
+.footer-copyright{
+    background-color: rgb(77, 82, 82);
+}
+.productList{
+    min-height: 520px;
+}
+.flex{
+    display: flex;
+}
+.badge-danger{
+    width: 3.5rem;
+    float: right;
+    position: relative;
+    left: 280px;
+    top: 20px;
+    z-index: 1;
+}
+.sloupec{
+    margin-left: 5%;
+}
+.filtraceGroup{
+    width: 115%;
+}
+.filtrationColumns input[type="submit"]{
+    display: table;
+    margin: auto;
+    margin-top:15px;
+}
+.kosikLink{
+    text-decoration: none;
+    color:black;
+}
+.kosikLink:hover{
+    color:black;
+}
+.kosikLink h3{
+    font-size: 1.5em;
+    margin-top: 18px;
+    float: left;
+}
+.CartItemDeleted{
+    max-height: 0;
+    /*visibility: hidden;*/
+    display: none;
+    transition: all 300ms ease-in-out;
+}
+ShoppingCartItem{
+    transition: .5s all linear;
+}
+.kosik h2,.dodani h2{
+    margin-top: 20px;
+}
+#donutWorry{
+    float:none;
+    margin:0;
+    height: auto;
+    width: 60%;
+    display:table;
+    margin: auto;
+    margin-bottom: 30px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin:auto;
+    margin-bottom: 2rem;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    color: black;
+    text-align: center;
+}
+th{
+    background-color: #123557;
+    color:white;
+    border: none;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+tr:nth-child(odd) {
+    background-color: #efefef;
+}
+.table_overflow
+{
+    overflow-x: auto;
+}
+table a:visited{
+    color: blue;
+}
+.reviewTextarea{
+    width: 100%;
+    height: 144px;
+}
+.reviewControl{
+    margin-top: 0.5rem;
+    margin-bottom: 2rem; 
+}
+.hvezdo{
+    position: relative;
+    top: 13px;
+    margin-left: 15px;
+    margin-top: -17px;
+    height: 15px;
+    width: auto;
+}
+.menuAdministrace ul {
+  list-style-type: none;
+  overflow: hidden;
+  padding: 0;
+  /*background-color: #333;*/
+  background-color: rgba(18, 53, 87,0.95);
+  display:table;
+  margin:auto;
+  margin-bottom: 0.2rem;
+  margin-top: 0.2rem;
+}
+
+.menuAdministrace li {
+  float: left;
+}
+
+.menuAdministrace li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.menuAdministrace li a:hover {
+  background-color: #111;
+}
+@media only screen and (max-width:1550px)
+{
+    .badge-danger{
+        left: 250px ;
+    }
+}
+@media only screen and (max-width: 990px) 
+{
+    .seznam_menu
+    {
+        width: 90%;
+    }
+    .badge-danger{
+        left: 230px;
+    }
+    .filtrovani{
+        float:none;
+        margin-right: 0;
+    }
+    .sloupec{
+        margin:0;
+        margin-right: 2rem;
+        float:left;
+    }
+    .filtrationColumns{
+        display: flex;
+        justify-content: space-around;
+    }
+    .filtraceGroup{
+        margin: 0;
+        padding: 0;
+        padding-left: 1rem;
+    }
+    .inputContainer{
+        margin-top: 25px;
+    }
+}
+@media only screen and (max-width: 720px) 
+{
+    .nadpis{
+        display:none;
+    }
+    .seznam_menu{
+        padding: 0;
+    }
+    #hlavni_obrazek{
+        margin:auto;
+    }
+    #hlavni_obraz{
+        margin-left: 62px;
+    }
+    .img_header{
+        height: 100%;
+    }
+    .registrace_form{
+        width: 90%;
+    }
+    /*Menu - resp*/
+    .burger
+    {
+        display: block;
+    }
+    .link
+    {
+        display:none;
+    }
+    .burger
+    {
+        padding-top:80px;
+        width: 85%;
+        transition: .5s all linear;
+        margin:auto;
+        text-align: center;
+    }
+    .burger p 
+    {
+        background-color: rgba(233, 167, 176, 0.9);
+        cursor:pointer;
+        padding: 15px 0;
+    }
+    .burger li
+    {
+        cursor:pointer;
+        width: inherit;
+        background-color: rgba(233, 167, 176, 1);
+        padding: 15px 0;
+        box-shadow: 0px 4px 12px -3px rgba(0,0,0,0.44);
+    }
+    .burger li:hover
+    {
+        background-color: rgba(233, 167, 176, 0.95)
+    }
+    .burger li a
+    {
+        text-decoration: none;
+        color: white;
+    }
+    .burger li:last-child{
+        margin-bottom: 3rem;
+    }
+}
+@media only screen and (max-width: 480px) 
+{
+    .burger
+    {
+        width: 95%;
+    }
+    .burger li
+    {
+        padding: 10px 0;
+    }
+}
+@media only print
+{
+    /*Menu - resp - tisk */
+    nav.menu_index
+    {
+        display:none;
+    }
+    nav li
+    {
+        display:none;
+    }
+}

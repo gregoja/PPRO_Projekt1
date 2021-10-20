@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head"></head>
+    <body>
+        <header th:replace="fragments :: header"></header>
+
+        <div class="container dodani">
+            <div class="row">
+                <div class="cudlik col-sm-4"><a href="cart"><b>KOŠÍK</b></a></div>
+                <div class="cudlik col-sm-4"><a href="deliveryDetails">DODACÍ ÚDAJE</a></div>
+                <div style="background-color:#eda4ae;" class="cudlik col-sm-4">SOUHRN OBJEDNÁVKY</div>
+            </div>
+
+            <div class="row"><div class="col-md-6">
+                <h2>Košík</h2>
+                <hr>
+
+                <img src="">
+                <h3>Čtverec dort</h3>
+                <div class="cena">cena: 325Kč</div>
+                <div class="pocet">počet kusů: 2</div>
+                <div class="cleaner"></div>
+                <hr>
+                <img src="">
+                <h3>Prase dort</h3>
+                <div class="cena">cena: 125Kč</div>
+                <div class="pocet">počet kusů: 6</div>
+                <div class="cleaner"></div>
+                <hr>
+            </div>
+                <div class="col-md-6">
+                    <h2>Dodání a platba</h2>
+
+                    <div >
+                        <hr>
+                        <img src="img/person.png">
+                        <h3>Osobní odběr</h3>
+                        <div class="cena">zdarma</div>
+                        <div class="cleaner"></div>
+                    </div>
+                    <div >
+                        <hr>
+                        <img src="img/karta.png">
+                        <h3>Hotově nebo kartou na projně</h3>
+                        <div class="cena">zdarma</div>
+                        <div class="cleaner"></div>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="padesat">
+                    <h2>Kontaktní údaje</h2>
+                    <p>kkomtu@dsf.cz</p>
+                    <p>420 777888999</p>
+                    <p>Kor</p>
+                    <p>For</p>
+                </div><div class="padesat">
+                    <h2>Fakturační údaje</h2>
+                    <p>Za 15</p>
+                    <p>Za</p>
+                    <p>55555</p>
+                    <p>Česká Republika</p>
+                </div>
+            </div>
+            <form action="php/doCompleteOrder.php" method="POST">
+                <input class="pokracovatInp" type="submit" name="ShippingInfoSubmit" value="Pokračovat">
+            </form>
+            <div class="cleaner"></div>
+        </div>
+
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+</html>

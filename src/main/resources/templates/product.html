@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head"></head>
+    <body>
+        <header th:replace="fragments :: header"></header>
+        <div class="container">
+            <h2 th:text="${product.name}"></h2>
+            <div class="row">
+                <div class="sirka col-xl-4">
+                    <img class="obr_pro " th:src="@{${'/img/product/' +product.pictureUrl}}" alt="Homernut">
+                </div>
+                <div class="col-xl-7">
+                    <p class="soupni" th:text="${product.description}"></p>
+                    <div class="prostred">
+                        <form id="formAddToCart">
+                            <div class="cena" th:text="'cena: ' + ${product.price} + 'Kč'">cena: Kč</div>
+                            <div class="mnozstvi">Množství: <input id="ammount" class="form-control" type="number" value="1" min="1" placeholder=""> </div>
+                            <div class="cleaner"></div>
+                            <input type="hidden" th:value="${product.id}" id="productId">
+                            <button type="button" class="btn btn-primary" id="koupit">KOUPIT</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <h2>RECENZE</h2>
+            <div class="reviewsDivWarning">
+                <h5 style='color:red; margin: 1em 0 1em 0;'>Pro čtení a přidávání recenzí se musíš přihlásit</h5>
+            </div>
+            <div style="min-height: 100px;" class="reviewsDiv recenze d-none" id="reviews">
+                <form id="formReview">
+                    <textarea class="reviewTextarea" name="text"></textarea>
+                    <div class="flex justify-content-between reviewControl">
+                        <div>
+                            <select name="stars">
+                                <option selected value="5">Bez Chyby</option><option  value="4">Výborné</option><option  value="3">Průměrné</option><option  value="2">Nic moc</option><option  value="1">Nechutné</option>                            </select>
+                                <img class="hvezdy" src='img/hvezdy_5.png' alt="hvezdy">
+                        </div>
+                        <div>
+                            <input type="submit" name="submitReview" value="Odešli Recenzi">
+                        </div>
+                    </div>
+                </form>
+                <div id="reviewsDiv">
+                    <h5 style='color:red; margin: 1em 0 1em 0;'>Žádné recenze k tomuto projektu zatím nemáme, takže směle do toho! ;)</h5>
+                    <!-- TO BE FILLED BY THE BROWSER -->
+                </div>                                            
+            </div>
+        </div>
+        <script src="js/product-functions.js" type="text/javascript" defer></script>
+        <script src="js/product.js" type="text/javascript" defer></script>
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+</html>

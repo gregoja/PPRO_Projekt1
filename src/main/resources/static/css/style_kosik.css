@@ -1,0 +1,444 @@
+*{
+	font-family: 'Barlow', sans-serif;
+}
+@font-face {
+    font-family: JT_Marine;
+    src: url("JTMarnie-Light.ttf"); 
+}
+
+.cleaner{
+	clear: both;
+}
+.bg-light{
+	background-color: rgba(233, 167, 176, 0.5) !important;
+}
+.navbar-light .navbar-toggler{
+	border-color: #EDEDED;
+}
+.navbar-light .navbar-toggler-icon{
+	background-image: url('../img/hamburger_menu.svg');
+}
+.img_header{
+	background: url('../img/header_mobil.jpg');
+	max-width: 100%;
+	height: 280px;
+	background-size: cover;
+}
+.navbar-light .navbar-nav .nav-link{
+	text-align: center;
+	color: white;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+	background-color: rgba(255, 255, 255, 0.3);
+	color: white;
+}
+.navbar-light .navbar-nav .nav-link.disabled, .navbar-light .navbar-nav .nav-link:focus {
+  color: white;
+}
+h1{
+	font-family: JT_Marine;
+	color: white;
+	text-align: center;
+}
+.nadpis{
+	width: 309px;
+	margin: auto;
+	margin-top: 35px;
+	background-color: rgba(233, 167, 176, 0.5);
+}
+.odkazy{
+	margin-top: 30px;
+}
+.card{
+	margin: auto;
+	border: none;
+}
+.card-body{
+	padding: 0;
+	margin: 1.25rem 0 1.25rem 0;
+}
+.btn{
+	width: 258px;
+	border-radius: 0;
+	background-color: #e4949f;
+	border: none;
+	padding: .400rem .75rem;
+	font-size: 18px;
+}
+.btn:hover{
+	background-color: #eda4ae;
+	font-weight: bold;
+}
+.card-img-top{
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: none;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #eda4ae;
+  border: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #eda4ae;
+  border: none;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+.odkazy .card .card-body img{
+	float: right;
+	display: none;
+}
+.odkazy .card .card-body img:hover{
+	display: block;
+}
+h2{
+	text-align: center;
+	margin-top: 30px;
+}
+.chvastani{
+	background: url('../img/chvastani_mobil.jpg') no-repeat center center fixed; ;
+	width: 100%;
+	height: 430px;
+	background-size: cover;
+	padding: 30px 0 15px 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+.centrace{
+	margin-top: 30px;
+	width: 300px;
+	margin: auto;
+}
+.chvastani img{
+	float: left;
+	margin-top: 20px;
+	margin-right: 15px;
+}
+.chvastani p{
+	margin-top: 20px;
+	text-align: left;
+}
+
+.slevanov{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.slevanov h2{
+	margin-bottom: 20px;
+}
+h5{
+	text-align: center;
+	font-size: 23px;
+}
+.slevanov img{
+	width: 258px;
+	height: auto;
+	z-index: 0;
+}
+.slevanov p{
+	text-align: center;
+
+}
+.tag p, .novinka p{
+	width: 50px;
+	height: 25px;
+	position: relative;
+	top: 40px;
+	left: 200px;
+	z-index: 1;
+	background-color: #b83636;
+	color: white;
+	border-radius: 10px;
+}
+.novinka p{
+	width: 65px;
+	background-color: #70bd4a;
+}
+.barva{
+	background-color: #5e6768;
+	color: white;
+	padding-top: 10px;
+}
+.barva img{
+	float: left;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+.podsebe{
+	display: table;
+}
+.barva p{
+	margin-top: 10px;
+}
+iframe{
+	margin-top: 20px;
+	width: 100%;
+	height: 270px;
+}
+.copyright{
+	text-align: right;
+	margin-right: 10px;
+}
+.cudlik{
+	display: none;
+}
+.cudlik a{
+	color: white;
+}
+.cudlik a:hover{
+	color: white;
+}
+.kosik img, .dodani img{
+	width: 60px;
+	height: auto;
+	float: left;
+	margin-right: 10px;
+}
+
+.kosikLink h3{
+	font-size: 1.5em;
+	margin-top: 18px;
+	float: left;
+}
+.produkt{
+	height: 100px;
+}
+.shoppingCartInput{
+	width: 70px;
+	margin-top: 18px;
+	margin-left: 20px;
+	float: right;
+}
+.ShoppingCartItem .cena, .pocet, .krizek{
+	margin-left: 20px;
+	font-size: 20px;
+	margin-top: 15px;
+	float: right;
+}
+.krizek:hover{
+        cursor: pointer;
+}
+.pocet{
+	font-size: 17px;
+	margin-top: 18px;
+}
+button{
+	margin: auto;
+	width: 200px;
+}
+#ok{
+	width: 100%;
+}
+#permision{
+	float: right;
+	width: 160px;
+	margin-bottom: 50px;
+}
+.pokracovatInp{
+	width: 160px;
+        cursor: pointer;
+	border-radius: 0;
+	background-color: #e4949f;
+	border: none;
+	padding: .400rem .75rem;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+	float: right;
+	margin-bottom: 50px;
+}
+.pokracovat a{
+	width: 160px;
+        cursor: pointer;
+	border-radius: 0;
+	background-color: #e4949f;
+	border: none;
+	padding: .400rem .75rem;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+	float: right;
+	margin-bottom: 50px;
+}
+.pokracovat a:hover{
+	background-color: #eda4ae;
+	font-weight: bold;
+	color: white;
+	text-decoration: none;
+}
+.pokracovatInp:hover{
+	background-color: #eda4ae;
+	font-weight: bold;
+	color: white;
+	text-decoration: none;
+}
+.zpet a{
+	width: 100px;
+	border-radius: 0;
+	background-color: #e4949f;
+	border: none;
+	padding: .400rem .75rem;
+	font-size: 18px;
+	color: white;
+	text-align: center;
+	float: left;
+	margin-bottom: 50px;
+}
+.zpet a:hover{
+	background-color: #eda4ae;
+	font-weight: bold;
+	color: white;
+	text-decoration: none;
+}
+/*
+input[type="radio"]{
+	margin-top: 18px;
+}*/
+@media only screen and (min-width: 576px){
+	.btn{
+		width: 510px;
+	}
+	.centrace{
+		width: 370px;
+	}
+	.slevanov img{
+		margin: auto;
+	}
+	.zmensit{
+		width: 258px;
+		margin: auto;
+		display: table;
+	}
+	iframe{
+		width: 360px;
+		height: 300px;
+	}
+	.tag p, .novinka p{
+		position: relative;
+		top: 40px;
+		left: 320px;
+	}
+	.cudlik{
+		display: block;
+		background-color: #e4949f;
+		color: white;
+		text-align: center;
+		height: 70px;
+		display: block;
+		margin: auto;
+		border-right: 1px solid white;
+		padding-top: 10px;
+	}
+	.zpet{
+		display: none;
+	}
+	.padesat{
+	width: 50%;
+	margin:  auto;
+}
+}
+@media only screen and (min-width: 768px){
+	.btn{
+		width: 210px;
+	}
+	.centrace{
+		width: 100%;
+		margin-top: 10px;
+	}
+	.soupni{
+		margin-top: 20px;
+	}
+	.chvastani{
+		background: url('../img/chvastani_pc.jpg') no-repeat center center fixed; ;
+		width: 100%;
+		height: 330px;
+		background-size: cover;
+		padding: 30px 0 15px 0;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	}
+	.odkazy{
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+	.tag p, .novinka p{
+		position: relative;
+		top: 40px;
+		left: 220px;
+	}
+	.posun{
+		margin-top: 20px;
+	}
+}
+@media only screen and (min-width: 992px){
+	.btn{
+		width: 18rem;
+	}
+	.soupni{
+		margin: auto;
+		margin-top: 20px;
+	}
+	.tag p, .novinka p{
+		position: relative;
+		top: 40px;
+		left: 300px;
+	}
+	.posun{
+		margin: auto;
+		width: 776px;
+	}
+	.cudlik{
+		padding-top: 20px;
+	}
+	.prostred{
+		width: 800px;
+		margin: auto;
+	}
+
+}
+@media only screen and (min-width: 1200px){
+	.img_header{
+	background-image: url('../img/header_pc.jpg');
+	max-width: 100%;
+	height: 342px;
+	background-size: cover;
+	}
+	h1{
+		font-size: 4em;
+	}
+	.nadpis{
+		width: 600px;
+		margin-top: 45px;
+	}
+	.btn{
+		width: 350px;
+	}
+	.card{
+		margin-right: px;
+	}
+	.kosik img{
+	width: 100px;
+	height: auto;
+	margin-right: 10px;
+	}
+	.dodani img{
+	width: 80px;
+	height: auto;
+	margin-right: 10px;
+	}/*
+	input[type="radio"]{
+		margin-top: 35px;
+	}*/
+}

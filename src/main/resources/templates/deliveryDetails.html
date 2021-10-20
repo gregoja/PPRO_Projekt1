@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments :: head"></head>
+    <body>
+        <header th:replace="fragments :: header"></header>
+
+        <div class="container dodani">
+            <div class="row">
+                <div class="cudlik col-sm-4"><a href="cart"><b>KOŠÍK</b></a></div>
+                <div style="background-color:#eda4ae;" class="cudlik col-sm-4"><a href="deliveryDetails">DODACÍ ÚDAJE</a></div>
+                <div class="cudlik col-sm-4">SOUHRN OBJEDNÁVKY</div>
+            </div>
+
+            <h2>Kontaktní údaje</h2>
+            <!-- TODO Upravit-->
+            <form method='POST' action="summary" class="prostred">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input name="EMAIL" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" value="" required type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Váš e-mail">
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Telefon</label>
+                    <div class="flex">
+                        <select id="phonePrefix" style="width: 20%;" name="PHONE_PREFIX" class="form-control">
+                            <option  value="420">420</option>
+                            <option  value="421">421</option>
+                        </select>
+                        <input pattern="[0-9]{9}" value="" name="TEL_NUMBER" required type="text" class="form-control" id="phoneNumber" placeholder="Váš telefon">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name">Jméno</label>
+                    <input value="" name="FIRSTNAME" required type="text" class="form-control" id="name" placeholder="Váše jméno">
+                </div>
+                <div class="form-group">
+                    <label for="surname">Příjmení</label>
+                    <input value="" name="LASTNAME" required type="text" class="form-control" id="surname" placeholder="Váše příjmení">
+                </div>
+
+                <h2>Fakturační údaje</h2>
+
+                <div class="form-group">
+                    <label for="street">Ulice</label>
+                    <input value="" name="STREET" required type="text" class="form-control" id="street" placeholder="Bydliště">
+                </div>
+                <div class="form-group">
+                    <label for="houseNumber">Čp.</label>
+                    <input value="" name="HOUSE_NUMBER" min="1" required type="number" class="form-control" id="houseNumber">
+                </div>
+                <div class="form-group">
+                    <label for="city">Obec</label>
+                    <input  value="" name="CITY" required type="text" class="form-control" id="city" placeholder="Obec">
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">PSČ</label>
+                    <input value="" pattern="\d{3} ?\d{2}" name="ZIP_CODE" required type="text" class="form-control" id="zipCode" placeholder="PSČ">
+                </div>
+                <div class="form-group">
+                    <label for="state">Stát</label>
+                    <select name="STATE_ID" required class="form-control" id="state">
+                        <option  value="1">Česká Republika</option>
+                        <option  value="2">Slovenská Republika</option>
+                    </select>
+                </div>
+                <input class="pokracovatInp" type="submit" name="ShippingInfoSubmit" value="Pokračovat">
+            </form>
+            <div class="cleaner"></div>
+        </div>
+        <footer th:replace="fragments :: footer"></footer>
+        <script src="js/order-functions.js" defer></script>
+        <script src="js/order.js" defer></script>
+    </body>
+    </html>

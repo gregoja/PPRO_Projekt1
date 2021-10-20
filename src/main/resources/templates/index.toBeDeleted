@@ -1,0 +1,129 @@
+<!--<!doctype html>
+<html lang="cs">
+    {{>head}}
+    <body>
+        {{>header}}
+        <div class="container">
+            <section class="odkazy row">
+
+                <div class="card col-sm-12 col-md-4 col-xl-4" style="width: 18rem;">
+                    <img class="card-img-top" src="img/muffiny.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <a href="produkty.php?page=1&category1=muffin" class="btn btn-primary">MUFFINY</a>
+                    </div>
+                </div>
+
+                <div class="card col-sm-12 col-md-4 col-xl-4" style="width: 18rem;">
+                    <img class="card-img-top" src="img/cukrovi.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <a href="produkty.php?page=1&category2=donut" class="btn btn-primary">DONUTY</a>
+                    </div>
+                </div>
+
+                <div class="card col-sm-12 col-md-4 col-xl-4" style="width: 18rem;">
+                    <img class="card-img-top" src="img/dorty.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <a href="produkty.php?page=1&category3=dort" class="btn btn-primary">DORTY</a>
+                    </div>
+                </div>
+
+                <div class="cleaner"></div>
+            </section>
+        </div>
+
+        <div class="chvastani">
+            <div class="container">
+                <h2>Chvástání se</h2>
+                <div class="row centrace">
+
+                    <div class="soupni col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                        <img src="img/icons/kafe.svg" alt="ikona" width="50" height="50">
+                        <p>Máme nejlepší kávu na celém světě!</p>
+                    </div>
+
+                    <div class="soupni col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                        <img src="img/icons/zmrzlina.svg" alt="ikona" width="50" height="50">
+                        <p>Lepší zmrzlinu jste ještě nejedli!</p>
+                    </div>
+
+                    <div class="soupni col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                        <img src="img/icons/donut.svg" alt="ikona" width="50" height="50">
+                        <p>Homer doporučuje naše donuty!</p>
+                    </div>
+
+                    <div class="soupni col-sm-12 col-md-6 col-lg-5 col-xl-5">
+                        <img src="img/icons/dort.svg" alt="ikona" width="50" height="50">
+                        <p>S nasím dortem vám nekrachne manželství!</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container slevanov">
+            <h2>Slevy a novinky!</h2>
+            <section class="row">
+                <div class="card col-sm-12 col-md-6 col-xl-4" style="width: 18rem;">
+                    <span  style="background-color: #b83636" class="badge badge-pill badge-danger">Sleva</span>
+                    <img class="card-img-top" src="img/product/barevnyspyani.jpg" alt="productPicture">
+                    <div class="card-body">
+                        <h5 class="card-title">Vanilkonut</h5>
+                        <p class="card-text">21 Kč</p>
+                        <a href="produkt.php?productId=5" class="btn btn-primary zmensit">Zobrazit</a>
+                    </div>
+                </div>
+                
+                <div class="card col-sm-12 col-md-6 col-xl-4" style="width: 18rem;">
+                    <span  style="background-color: #70bd4a" class="badge badge-pill badge-danger">Novinka</span>
+                    <img class="card-img-top" src="img/product/barevnyspyani.jpg" alt="productPicture">
+                    <div class="card-body">
+                        <h5 class="card-title">Lentilkonut</h5>
+                        <p class="card-text">12 Kč</p>
+                        <a href="produkt.php?productId=3" class="btn btn-primary zmensit">Zobrazit</a>
+                    </div>
+                </div>
+                
+                <div class="card col-sm-12 col-md-6 col-xl-4" style="width: 18rem;">
+                    <span  style="background-color: #70bd4a" class="badge badge-pill badge-danger">Novinka</span>
+                    <img class="card-img-top" src="img/product/barevnyspyani.jpg" alt="productPicture">
+                    <div class="card-body">
+                        <h5 class="card-title">Prase dort</h5>
+                        <p class="card-text">125 Kč</p>
+                        <a href="produkt.php?productId=18" class="btn btn-primary zmensit">Zobrazit</a>
+                    </div>
+                </div>
+                
+                <div class="card col-sm-12 col-md-6 col-xl-4" style="width: 18rem;">
+                    <span  style="background-color: #b83636" class="badge badge-pill badge-danger">Sleva</span>
+                    <img class="card-img-top" src="img/product/barevnyspyani.jpg" alt="productPicture">
+                    <div class="card-body">
+                        <h5 class="card-title">Prostě dort</h5>
+                        <p class="card-text">100 Kč</p>
+                        <a href="produkt.php?productId=21" class="btn btn-primary zmensit">Zobrazit</a>
+                    </div>
+                </div>
+                
+                <div class="card col-sm-12 col-md-6 col-xl-4" style="width: 18rem;">
+                    <span  style="background-color: #70bd4a" class="badge badge-pill badge-danger">Novinka</span>
+                    <img class="card-img-top" src="img/product/barevnyspyani.jpg" alt="productPicture">
+                    <div class="card-body">
+                        <h5 class="card-title">NormálníMuffin</h5>
+                        <p class="card-text">36 Kč</p>
+                        <a href="produkt.php?productId=12" class="btn btn-primary zmensit">Zobrazit</a>
+                    </div>
+                </div>
+                
+                <div class="card col-sm-12 col-md-6 col-xl-4" style="width: 18rem;">
+                    <span  style="background-color: #70bd4a" class="badge badge-pill badge-danger">Novinka</span>
+                    <img class="card-img-top" src="img/product/barevnyspyani.jpg" alt="productPicture">
+                    <div class="card-body">
+                        <h5 class="card-title">Iron dort</h5>
+                        <p class="card-text">270 Kč</p>
+                        <a href="produkt.php?productId=16" class="btn btn-primary zmensit">Zobrazit</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        {{>footer}}
+    </body>
+</html>-->
