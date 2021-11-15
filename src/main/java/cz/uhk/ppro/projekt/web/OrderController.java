@@ -1,7 +1,6 @@
-package cz.uhk.ppro.projekt.controllers;
+package cz.uhk.ppro.projekt.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,22 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Controller
-public class DefaultController {
-    @GetMapping("/index")
-    public String renderIndexPage(Model model){
-        //model.addAttribute("title","CUKRÁRNA U RAKVIČKY");
-        return  "products";
-    }
-
-    @GetMapping("/")
-    public String renderSlashPage(Model model){
-        return renderIndexPage(model);
-    }
-
-    @GetMapping(value={"/uc"})
-    public String renderUcPage(){
-        return "uc";
-    }
+public class OrderController {
 
     @GetMapping("cart")
     public String renderCartPage(){

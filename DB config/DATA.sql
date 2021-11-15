@@ -64,33 +64,11 @@ INSERT INTO `products` (`PRODUCT_ID`, `PRICE`, `NAME`, `DESCRIPTION`, `ADDED`, `
 INSERT INTO `products` (`PRODUCT_ID`, `PRICE`, `NAME`, `DESCRIPTION`, `ADDED`, `CATEGORY_ID`, `TAG_ID`, `PICTURE_URL`) VALUES(21, 100, 'Prostě dort', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent in mauris eu tortor porttitor accumsan. Suspendisse nisl. Morbi scelerisque luctus velit. Praesent id justo in neque elementum ultrices. Praesent dapibus. Praesent in mauris eu tortor porttitor accumsan. Praesent vitae arcu tempor neque lacinia pretium. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Nulla pulvinar eleifend sem. Nulla accumsan, elit sit amet varius semper, nulla mauris mollis quam, tempor suscipit diam nulla vel leo.', '2020-02-13 17:06:00', 3, 1, 'Homernut');
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `users` (`USER_ID`, `USERNAME`, `PASSWORD`, `ADMINISTRATOR`, `REGISTRATION_TIMESTAMP`) VALUES(1, 'admin', '$2y$10$MFtH3LRKkRL9lWeF.io94eWuQmmNQwDlvcuyCcVHCbCFFjeTs.pK6', 1, '2020-02-24 17:47:45');
+INSERT INTO `user` (`USER_ID`, `USERNAME`, `PASSWORD`, `ADMINISTRATOR`, `REGISTRATION_TIMESTAMP`) VALUES(1, 'admin', '$2y$10$MFtH3LRKkRL9lWeF.io94eWuQmmNQwDlvcuyCcVHCbCFFjeTs.pK6', 1, '2020-02-24 17:47:45');
 
-
---
--- Dumping data for table `stars_to_text`
---
-INSERT INTO `stars_to_text`(`STARS`, `TEXT`) VALUES (5,"Bez Chyby");
-INSERT INTO `stars_to_text`(`STARS`, `TEXT`) VALUES (4,"Výborné");
-INSERT INTO `stars_to_text`(`STARS`, `TEXT`) VALUES (3,"Průměrné");
-INSERT INTO `stars_to_text`(`STARS`, `TEXT`) VALUES (2,"Nic moc");
-INSERT INTO `stars_to_text`(`STARS`, `TEXT`) VALUES (1,"Nechutné");
-
-
---
--- Dumping data for table `states`
---
-INSERT INTO `states`(`STATE_ID`, `NAME`) VALUES (1,"Česká Republika");
-INSERT INTO `states`(`STATE_ID`, `NAME`) VALUES (2,"Slovenská Republika");
-
---
--- Dumping data for table `phone_prefixes`
---
-INSERT INTO `phone_prefixes`(`PHONE_PREFIX`, `REGION`) VALUES (420,"ČR");
-INSERT INTO `phone_prefixes`(`PHONE_PREFIX`, `REGION`) VALUES (421,"SR");
 
 COMMIT;
 

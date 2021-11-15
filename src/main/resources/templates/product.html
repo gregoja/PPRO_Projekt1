@@ -16,7 +16,7 @@
                             <div class="cena" th:text="'cena: ' + ${product.price} + 'Kč'">cena: Kč</div>
                             <div class="mnozstvi">Množství: <input id="ammount" class="form-control" type="number" value="1" min="1" placeholder=""> </div>
                             <div class="cleaner"></div>
-                            <input type="hidden" th:value="${product.id}" id="productId">
+                            <input type="hidden" th:value="${product.productId}" id="productId">
                             <button type="button" class="btn btn-primary" id="koupit">KOUPIT</button>
                         </form>
                         

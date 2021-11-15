@@ -38,14 +38,12 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `STREET` varchar(100) NOT NULL,
   `TEL_NUMBER` int(11) NOT NULL,
   `ZIP_CODE` int(11) NOT NULL,
-  `STATE_ID` int(11) NOT NULL,
+  `STATE` varchar(100) NOT NULL,
   `PHONE_PREFIX` int(11) NOT NULL,
   `USER_ID` int(11) DEFAULT NULL,
   `ORDERED` timestamp NOT NULL DEFAULT current_timestamp(),
   `COMPLETED` TinyInt(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ORDER_ID`),
-  KEY `STATE_ID` (`STATE_ID`),
-  KEY `COUNTY_PREFIX_ID` (`PHONE_PREFIX`),
   KEY `USER_ID` (`USER_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -64,19 +62,6 @@ CREATE TABLE IF NOT EXISTS `order_rows` (
   PRIMARY KEY (`ORDER_ROW_ID`),
   KEY `PRODUCT_ID` (`PRODUCT_ID`),
   KEY `ORDER_ID` (`ORDER_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `phone_prefixes`
---
-
-CREATE TABLE IF NOT EXISTS `phone_prefixes` (
-  `PHONE_PREFIX` int(11) NOT NULL,
-  `REGION` varchar(100) NOT NULL,
-  PRIMARY KEY (`PHONE_PREFIX`),
-  UNIQUE KEY `REGION` (`REGION`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -133,31 +118,6 @@ CREATE TABLE IF NOT EXISTS `reviews` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stars_to_text`
---
-
-CREATE TABLE IF NOT EXISTS `stars_to_text` (
-  `STARS` int(11) NOT NULL,
-  `TEXT` varchar(50) NOT NULL,
-  PRIMARY KEY (`STARS`),
-  UNIQUE KEY `TEXT` (`TEXT`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `states`
---
-
-CREATE TABLE IF NOT EXISTS `states` (
-  `STATE_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(100) NOT NULL,
-  PRIMARY KEY (`STATE_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tags`
 --
 
@@ -171,10 +131,10 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `user` (
   `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USERNAME` varchar(50) NOT NULL,
   `PASSWORD` varchar(255) NOT NULL,
@@ -192,9 +152,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `FK-orders-phone_prefixes` FOREIGN KEY (`PHONE_PREFIX`) REFERENCES `phone_prefixes` (`PHONE_PREFIX`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK-orders-states` FOREIGN KEY (`STATE_ID`) REFERENCES `states` (`STATE_ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK-orders-users` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK-orders-user` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`USER_ID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `order_rows`
@@ -215,8 +173,7 @@ ALTER TABLE `products`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `FK-reviews-products` FOREIGN KEY (`PRODUCT_ID`) REFERENCES `products` (`PRODUCT_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK-reviews-stars_to_text` FOREIGN KEY (`STARS`) REFERENCES `stars_to_text` (`STARS`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK-reviews-users` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK-reviews-user` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

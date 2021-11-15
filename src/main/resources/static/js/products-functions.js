@@ -1,4 +1,5 @@
 const createDOMProduct = (product) => {
+    console.log(product);
     const productElement = document.createElement("div");
     productElement.setAttribute("class","card col-sm-12 col-md-6 col-xl-4");
     productElement.setAttribute("style","width: 18rem");
@@ -17,7 +18,6 @@ const createDOMProduct = (product) => {
 
     const productImage = document.createElement("img");
     productImage.setAttribute("class","card-img-top");
-    productImage.setAttribute("src","img/product/barevnyspyani.jpg");
     productImage.setAttribute("src",`img/product/${product.pictureUrl}`);
     productImage.setAttribute("span","productPicture");
     productElement.appendChild(productImage);
@@ -37,7 +37,7 @@ const createDOMProduct = (product) => {
 
         const textButtonLink = document.createElement("a");
         textButtonLink.setAttribute("class","btn btn-primary zmensit");
-        textButtonLink.setAttribute("href",`product?productId=${product.id}`);
+        textButtonLink.setAttribute("href",`product?productId=${product.productId}`);
         textButtonLink.textContent = "Zobrazit";
         textDiv.appendChild(textButtonLink);
 
@@ -51,7 +51,6 @@ const fetchProducts = async () => {
         let products = await sendRequestWithoutData("/products","GET");
         const productsDiv = document.querySelector('.productList section')
         productsDiv.innerHTML = ''
-        
         products.forEach( (product) => { productsDiv.appendChild(createDOMProduct(product)) })
     }catch(e){
         console.log(error)
