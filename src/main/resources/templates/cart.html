@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="cs" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments :: head"></head>
+    <head th:replace="fragments/head :: head"></head>
     <body>
-        <header th:replace="fragments :: header"></header>
+        <header th:replace="fragments/header :: header"></header>
 
         <div class="container kosik">
             <div class="row">
@@ -19,7 +19,7 @@
             <div class="pokracovat "><a href="deliveryDetails">Pokračovat ></a></div>
             <div class="cleaner"></div>
         </div>
-        <footer th:replace="fragments :: footer"></footer>
+        <footer th:replace="fragments/footer :: footer"></footer>
         <script src="js/cart-functions.js" defer></script>
         <script src="js/cart.js" defer></script>
     </body>

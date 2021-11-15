@@ -1,0 +1,27 @@
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="css/style_kosik.css" rel="stylesheet">
+        <link href="css/style_produkt.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/menu_footer.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Barlow:400,600" rel="stylesheet">
+        <link rel="icon" type="image/png" href="/favicon.png"/>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="js/common-functions.js" type="text/javascript" defer></script>
+        <noscript>
+            <style>
+                @media only screen and (max-width: 720px)
+                {
+                    .menu_neviditelne
+                    {
+                        max-height: 500px;
+                    }
+                }
+            </style>
+        </noscript>
+        <title th:text="${title}?:'CUKRÁRNA U RAKVIČKY'"></title>
+    </head>
+</html>

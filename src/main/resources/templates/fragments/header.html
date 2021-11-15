@@ -1,0 +1,48 @@
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+    <header th:fragment="header">
+        <div class="userPanelWrapper">
+            <div class="userPanel">
+                <a href="login" class="userPanelButton loginButton" id="buttonLogin">Přihlas se/ registrace</a>
+                <a href="#" class="userPanelButton loginButton d-none"  id="buttonLogout">odhlásit se</a>
+                <div class="cleaner"></div>
+            </div>
+        </div>
+        <div class="img_header">
+            <nav>
+                <div class="prvni_menu">
+                    <ul class="seznam_menu">
+                        <li class="link"><a href="index">Úvod</a></li>
+                        <li class="link"><a href="uc">Cukrárna</a></li>
+                        <li class="link"><a href="index">Nabídka</a></li>
+                        <li id="hlavni_obrazek">
+                            <a href="index"><img id="hlavni_obraz" alt="úvodní obrázek" src="img/logo_bila.svg" width="120"></a>
+                        </li>
+                        <li class="link"><a href="uc">Kariéra</a></li>
+                        <li class="link"><a href="uc">Pobočky</a></li>
+                        <li class="shoppingCart">
+                            <a href="cart">
+                                <img src="img/icons/supermarket_White.svg" alt="Košík" width="40" height="40">
+                                <span class="cartItems">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="burger">
+                    <p> >>Zobrazit nabídku<< </p>
+                    <ul class="menu_neviditelne">
+                        <li><a href="index">Úvod</a></li>
+                        <li><a href="uc">Cukrárna</a></li>
+                        <li><a href="index">Nabídka</a></li>
+                        <li><a href="uc">O kávě</a></li>
+                        <li><a href="uc">Kariéra</a></li>
+                        <li><a href="uc">Pobočky</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="nadpis">
+                <h1>CUKRÁRNA</h1>
+                <h1>U RAKVIČKY</h1>
+            </div>
+        </div>
+    </header>
+</html>
