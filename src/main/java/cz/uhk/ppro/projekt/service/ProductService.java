@@ -16,19 +16,6 @@ public class ProductService {
         this.repository = repository;
     }
 
-    /*public List<Product> getPage(Pageable paging){
-        Slice<Product> slicedResult = repository.findAll(paging);
-        return slicedResult.getContent();
-    }
-
-    public List<Product> getAllByProductCategory(String categoryName,Pageable paging){
-        return repository.findAllByProductCategoriesByCategoryId_Name(categoryName,paging);
-    }
-
-    public List<Product> getAll(){
-        return repository.findAll(Sort.by("added").descending());
-    }
-*/
     public Optional<Product> getById(long id){
         return repository.findById(id);
     }

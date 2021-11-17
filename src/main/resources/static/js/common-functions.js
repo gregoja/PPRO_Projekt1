@@ -74,6 +74,7 @@ const deleteItemFromCart = (id) => {
         id: id,
         ammount: 0
     });
+    updateTotalInCartDOM();
 }
 
 const saveCart = (items) => {

@@ -7,7 +7,7 @@ const createDOMItem = (item) => {
     itemElement.appendChild(itemImg);
 
     const itemLink = document.createElement("a");
-    itemLink.setAttribute("href",`/product?productId=${item.id}`);
+    itemLink.setAttribute("href",`/product?productId=${item.productId}`);
     itemLink.setAttribute("class","kosikLink");
         const itemH3 = document.createElement("h3");
         itemH3.innerText = item.name;
@@ -16,7 +16,7 @@ const createDOMItem = (item) => {
 
     const itemParagraph = document.createElement("p");
     itemParagraph.setAttribute("class","krizek");
-    itemParagraph.addEventListener("click",() => deleteItemFromCart(item.id));
+    itemParagraph.addEventListener("click",() => deleteItemFromCart(item.productId));
     itemParagraph.innerText = "×";
     itemElement.appendChild(itemParagraph);
 
@@ -28,7 +28,7 @@ const createDOMItem = (item) => {
     itemQuanityInput.setAttribute("value",item.amount);
     itemQuanityInput.setAttribute("placeholder","kusů");
     itemQuanityInput.addEventListener("change",() => {
-        addItemToCart({id:item.id, ammount: itemQuanityInput.value})
+        addItemToCart({id:item.productId, ammount: itemQuanityInput.value})
         itemQuanityInput.nextElementSibling.innerText =
             `cena: ${Math.round(itemQuanityInput.value * item.price*100)/100} Kč`;
     });

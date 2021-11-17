@@ -20,7 +20,8 @@ class ProductRepositoryImpl implements ProductRepositoryCustom {
     /**
      * @param desiredCategories list of desired categories
      * @param desiredTags list of desired tags
-     * @return List<Product> by criteria, paged, sorted by date timestamp (ADDED)
+     * @param paging paging data: offset, first result
+     * @return List<Product> by criteria, paged, ordered by date timestamp (ADDED)
      */
     @Override
     public List<Product> findAllProductsByCriteria(List<String> desiredCategories, List<String> desiredTags, Pageable paging) {
@@ -44,15 +45,10 @@ class ProductRepositoryImpl implements ProductRepositoryCustom {
             predicates.add(predicate);
         }
 
-        q.orderBy(cb.desc(product.get(Product_.ADDED)));
-        q.select(product).distinct(true).where(predicates.toArray(new Predicate[]{}));
+        q.select(product).distinct(true).where(predicates.toArray(new Predicate[]{}))
+                .orderBy(cb.desc(product.get(Product_.ADDED)));
         return em.createQuery(q).setFirstResult(((int) paging.getOffset()))
                 .setMaxResults(paging.getPageSize()).getResultList();
     }
-
-    /*@Override
-    public List<Product> findAllProducts(Pageable paging) {
-        return findAllProductsByCriteria(null,null,paging);
-    }*/
 
 }

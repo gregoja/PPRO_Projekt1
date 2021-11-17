@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -19,19 +20,18 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(value = "/products", params = {"pageNo","pageSize"})
+    /*@GetMapping(value = "/products", params = {"pageNo","pageSize"})
     @ResponseBody()
     public List<Product> getPagedProducts(@RequestParam(value = "pageNo") int pageNo,
             @RequestParam(value = "pageSize") int pageSize){
         return productService.getByCriteria(null,null,PageRequest.of(pageNo,pageSize));
-    }
+    }*/
 
-
-    @GetMapping(value = "/products")
+    /*@GetMapping(value = "/products")
     @ResponseBody()
     public List<Product> getAllProducts(){
-        return getPagedProducts(0,9);
-    }
+        return getProductsByCriteria(null,null,0);
+    }*/
 
     @GetMapping(value = "products",params = "productId")
     @ResponseBody
@@ -46,14 +46,23 @@ public class ProductController {
         return "product";
     }
 
-    @GetMapping("wtf")
+    /**
+     *  /products?categories=Donut&tags=Sleva,Novinka&pageNo=1
+     *
+     */
+    @GetMapping("/products")
     @ResponseBody
-    public List<Product> getProductsByCriteria(){
+    public List<Product> getProductsByCriteria(@RequestParam(value = "categories",required = false) String categories,
+                                               @RequestParam(value = "tags", required = false) String tags,
+                                               @RequestParam(value = "pageNo",required = false, defaultValue = "0") int pageNo){
         List<String> desiredCategories = new ArrayList<>();
         List<String> desiredTags = new ArrayList<>();
-        // desiredTags.add("Sleva");
-        // desiredTags.add("Novinka");
-        // desiredCategories.add("Donut");
-        return productService.getByCriteria(desiredCategories, desiredTags, PageRequest.of(0,5));
+        if(tags != null){
+            desiredTags = Arrays.asList(tags.split(","));
+        }
+        if(categories != null){
+            desiredCategories = Arrays.asList(categories.split(","));
+        }
+        return productService.getByCriteria(desiredCategories, desiredTags, PageRequest.of(pageNo,9));
     }
 }
