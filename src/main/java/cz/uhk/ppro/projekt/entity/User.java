@@ -1,5 +1,5 @@
 package cz.uhk.ppro.projekt.entity;
-/*
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -14,6 +14,7 @@ public class User {
 
     @Id
     @Column(name = "USER_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getUserId() {
         return userId;
     }
@@ -53,7 +54,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "REGISTRATION_TIMESTAMP", nullable = false)
+    @Column(name = "REGISTRATION_TIMESTAMP", insertable = false, updatable = false, nullable = false)
     public Timestamp getRegistrationTimestamp() {
         return registrationTimestamp;
     }
@@ -89,4 +90,3 @@ public class User {
         return result;
     }
 }
-*/
