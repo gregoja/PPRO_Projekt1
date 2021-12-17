@@ -4,6 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/*
+BEST PRACTICES
+Názvy zdrojů: podstatná jména
+Názvy operací: slovesa
+Kolekce:
+/customers
+Konkrétní „instance“:
+/customers/123
+Provázané objekty:
+/customers/123/orders
+ */
+
 @Controller
 public class DefaultController {
     @GetMapping("/index")

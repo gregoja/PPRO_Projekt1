@@ -3,7 +3,7 @@ package cz.uhk.ppro.projekt.web;
 import cz.uhk.ppro.projekt.entity.Product;
 import cz.uhk.ppro.projekt.model.OrderSummary;
 import cz.uhk.ppro.projekt.service.ProductService;
-import cz.uhk.ppro.projekt.web.httpResponse.ResourceNotFoundException;
+import cz.uhk.ppro.projekt.web.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,15 +35,6 @@ public class OrderController {
         return "deliveryDetails";
     }
 
-
-    /*@GetMapping("/product")
-    public String getProduct(@RequestParam(value = "productId") int productId, Model model){
-        Product product = productService.getById(productId).orElseThrow(ResourceNotFoundException::new);
-        model.addAttribute("product",product);
-        return "product";
-    }*/
-
-
     @GetMapping("summary")
     public String renderSummaryPage(HttpSession session, Model model){
         OrderSummary summary = (OrderSummary) session.getAttribute("orderSummary");
@@ -62,9 +54,11 @@ public class OrderController {
         return "summary";
     }
 
+    //TODO zmenit nazev tohoto endpointu
     @PostMapping("deliveryDetails")
-    public void summaryRequested(@RequestBody OrderSummary orderSummary, HttpSession session){
+    public void validateDeliveryDetails(@RequestBody @Valid OrderSummary orderSummary, HttpSession session){
         session.setAttribute("orderSummary",orderSummary);
+        System.out.println(orderSummary);
         //TODO overeni validity vstupu od uzivatele
     }
 }

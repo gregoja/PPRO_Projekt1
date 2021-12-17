@@ -2,7 +2,7 @@ package cz.uhk.ppro.projekt.web;
 
 import cz.uhk.ppro.projekt.entity.Product;
 import cz.uhk.ppro.projekt.service.ProductService;
-import cz.uhk.ppro.projekt.web.httpResponse.ResourceNotFoundException;
+import cz.uhk.ppro.projekt.web.errors.ResourceNotFoundException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,32 +18,6 @@ public class ProductController {
 
     public ProductController(ProductService productService) {
         this.productService = productService;
-    }
-
-    /*@GetMapping(value = "/products", params = {"pageNo","pageSize"})
-    @ResponseBody()
-    public List<Product> getPagedProducts(@RequestParam(value = "pageNo") int pageNo,
-            @RequestParam(value = "pageSize") int pageSize){
-        return productService.getByCriteria(null,null,PageRequest.of(pageNo,pageSize));
-    }*/
-
-    /*@GetMapping(value = "/products")
-    @ResponseBody()
-    public List<Product> getAllProducts(){
-        return getProductsByCriteria(null,null,0);
-    }*/
-
-    @GetMapping(value = "products",params = "productId")
-    @ResponseBody
-    public Product getProductById(@RequestParam(value = "productId") long productId){
-        return productService.getById(productId).orElseThrow(ResourceNotFoundException::new);
-    }
-
-    @GetMapping("/product")
-    public String getProduct(@RequestParam(value = "productId") int productId, Model model){
-        Product product = productService.getById(productId).orElseThrow(ResourceNotFoundException::new);
-        model.addAttribute("product",product);
-        return "product";
     }
 
     /**
@@ -64,5 +38,18 @@ public class ProductController {
             desiredCategories = Arrays.asList(categories.split(","));
         }
         return productService.getByCriteria(desiredCategories, desiredTags, PageRequest.of(pageNo,9));
+    }
+
+    @GetMapping(value = "/products/{id}")
+    @ResponseBody
+    public Product getProductById(@PathVariable long id){
+        return productService.getById(id).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @GetMapping("/product")
+    public String getProduct(@RequestParam(value = "productId") int productId, Model model){
+        Product product = productService.getById(productId).orElseThrow(ResourceNotFoundException::new);
+        model.addAttribute("product",product);
+        return "product";
     }
 }
