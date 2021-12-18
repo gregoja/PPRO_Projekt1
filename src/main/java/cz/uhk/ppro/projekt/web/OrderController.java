@@ -38,12 +38,11 @@ public class OrderController {
     @GetMapping("summary")
     public String renderSummaryPage(HttpSession session, Model model){
         OrderSummary summary = (OrderSummary) session.getAttribute("orderSummary");
-        //session.removeAttribute("orderSummary");
+        if(summary == null) return "error";
         List<Product> productsToBeOrdered = new ArrayList<>();
         List<OrderSummary.CartItem> cartItems = summary.getCart();
         int totalPrice = 0;
         for (OrderSummary.CartItem item : cartItems){
-            // internal server error?
             Product product = service.getById(item.getId()).orElseThrow(ResourceNotFoundException::new);
             totalPrice+= item.getAmmount() * product.getPrice();
             productsToBeOrdered.add(product);
@@ -51,6 +50,10 @@ public class OrderController {
         model.addAttribute("orderSummary",summary);
         model.addAttribute("productsToBeOrdered",productsToBeOrdered);
         model.addAttribute("totalPrice",totalPrice);
+
+
+
+        //session.removeAttribute("orderSummary");
         return "summary";
     }
 
@@ -59,6 +62,5 @@ public class OrderController {
     public void validateDeliveryDetails(@RequestBody @Valid OrderSummary orderSummary, HttpSession session){
         session.setAttribute("orderSummary",orderSummary);
         System.out.println(orderSummary);
-        //TODO overeni validity vstupu od uzivatele
     }
 }
