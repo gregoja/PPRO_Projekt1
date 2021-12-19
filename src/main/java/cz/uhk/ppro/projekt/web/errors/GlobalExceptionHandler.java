@@ -8,33 +8,55 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.naming.InsufficientResourcesException;
 import java.util.*;
 
 @ControllerAdvice
-public class GlobalExceptionHandler{
+public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<ErrorDetails> handleGlobalException(RuntimeException e) {
         //e.printStackTrace();
         Map<String, String> errors = new LinkedHashMap<>();
-        errors.put("error",e.toString());
-        return new ResponseEntity<ErrorDetails>(new ErrorDetails("BAD REQUEST",errors), HttpStatus.INTERNAL_SERVER_ERROR);
+        errors.put("error", e.toString());
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        return new ResponseEntity<>(new ErrorDetails("INTERNAL SERVER ERROR", status, errors), status);
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorDetails> handleEmptyResultDataException(EmptyResultDataAccessException e) {
         //e.printStackTrace();
         Map<String, String> errors = new LinkedHashMap<>();
-        errors.put("error",e.toString());
-        return new ResponseEntity<ErrorDetails>(new ErrorDetails("NOT FOUND",errors), HttpStatus.NOT_FOUND);
+        errors.put("error", e.toString());
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(new ErrorDetails("NOT FOUND", status, errors), status);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException e) {
+        //e.printStackTrace();
+        Map<String, String> errors = new LinkedHashMap<>();
+        errors.put("error", e.toString());
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(new ErrorDetails("NOT FOUND", status, errors), status);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorDetails> handleInsufficientResourcesException(InsufficientResourcesException e) {
+        //e.printStackTrace();
+        Map<String, String> errors = new LinkedHashMap<>();
+        errors.put("error", e.toString());
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(new ErrorDetails("BAD REQUEST", status, errors), status);
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorDetails> handleValidationException(MethodArgumentNotValidException e) {
         //e.printStackTrace();
-        Map<String,String> errors = new LinkedHashMap<>();
+        Map<String, String> errors = new LinkedHashMap<>();
         for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
             errors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
-        return new ResponseEntity<ErrorDetails>(new ErrorDetails("VALIDATION ERROR",errors), HttpStatus.BAD_REQUEST);
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(new ErrorDetails("VALIDATION ERROR", status, errors), status);
     }
 }

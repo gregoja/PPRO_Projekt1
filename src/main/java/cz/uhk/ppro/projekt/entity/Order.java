@@ -1,5 +1,5 @@
 package cz.uhk.ppro.projekt.entity;
-/*
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -15,13 +15,33 @@ public class Order {
     private String street;
     private int telNumber;
     private int zipCode;
-    private String state;
+    private Integer userId;
+    private int state;
     private int phonePrefix;
     private Timestamp ordered;
     private byte completed;
 
+    public Order() {
+    }
+
+    public Order(String city, String email, String firstaname, int houseNumber, String lastname, String street, int telNumber, int zipCode, Integer userId, int state, int phonePrefix, byte completed) {
+        this.city = city;
+        this.email = email;
+        this.firstaname = firstaname;
+        this.houseNumber = houseNumber;
+        this.lastname = lastname;
+        this.street = street;
+        this.telNumber = telNumber;
+        this.zipCode = zipCode;
+        this.userId = userId;
+        this.state = state;
+        this.phonePrefix = phonePrefix;
+        this.completed = completed;
+    }
+
     @Id
     @Column(name = "ORDER_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getOrderId() {
         return orderId;
     }
@@ -111,12 +131,22 @@ public class Order {
     }
 
     @Basic
+    @Column(name = "USER_ID")
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    @Basic
     @Column(name = "STATE", nullable = false, length = 100)
-    public String getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -131,7 +161,8 @@ public class Order {
     }
 
     @Basic
-    @Column(name = "ORDERED", nullable = false)
+    @Column(name = "ORDERED",insertable = false, updatable = false, nullable = false)
+    @GeneratedValue
     public Timestamp getOrdered() {
         return ordered;
     }
@@ -168,7 +199,6 @@ public class Order {
         if (firstaname != null ? !firstaname.equals(order.firstaname) : order.firstaname != null) return false;
         if (lastname != null ? !lastname.equals(order.lastname) : order.lastname != null) return false;
         if (street != null ? !street.equals(order.street) : order.street != null) return false;
-        if (state != null ? !state.equals(order.state) : order.state != null) return false;
         if (ordered != null ? !ordered.equals(order.ordered) : order.ordered != null) return false;
 
         return true;
@@ -185,10 +215,9 @@ public class Order {
         result = 31 * result + (street != null ? street.hashCode() : 0);
         result = 31 * result + telNumber;
         result = 31 * result + zipCode;
-        result = 31 * result + (state != null ? state.hashCode() : 0);
         result = 31 * result + phonePrefix;
         result = 31 * result + (ordered != null ? ordered.hashCode() : 0);
         result = 31 * result + (int) completed;
         return result;
     }
-}*/
+}

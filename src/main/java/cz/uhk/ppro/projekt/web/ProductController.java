@@ -42,7 +42,7 @@ public class ProductController {
 
     @GetMapping(value = "/products/{id}")
     @ResponseBody
-    public Product getProductById(@PathVariable long id){
+    public Product getProductById(@PathVariable int id){
         return productService.getById(id).orElseThrow(ResourceNotFoundException::new);
     }
 

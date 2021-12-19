@@ -1,5 +1,5 @@
 package cz.uhk.ppro.projekt.entity;
-/*
+
 import javax.persistence.*;
 
 @Entity
@@ -8,9 +8,22 @@ public class OrderRow {
     private int orderRowId;
     private int count;
     private int pricePerUnit;
+    private int productId;
+    private int orderId;
+
+    public OrderRow() {
+    }
+
+    public OrderRow(int count, int pricePerUnit, int productId, int orderId) {
+        this.count = count;
+        this.pricePerUnit = pricePerUnit;
+        this.productId = productId;
+        this.orderId = orderId;
+    }
 
     @Id
     @Column(name = "ORDER_ROW_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getOrderRowId() {
         return orderRowId;
     }
@@ -39,6 +52,25 @@ public class OrderRow {
         this.pricePerUnit = pricePerUnit;
     }
 
+    @Basic
+    @Column(name = "PRODUCT_ID", nullable = false)
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+    @Basic
+    @Column(name = "ORDER_ID", nullable = false)
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,4 +93,3 @@ public class OrderRow {
         return result;
     }
 }
-*/

@@ -49,6 +49,7 @@ const createDOMProduct = (product) => {
 const fetchProducts = async () => { 
     try{
         let products = await sendRequestWithoutData("/products","GET");
+        products = await products.json();
         const productsDiv = document.querySelector('.productList section')
         productsDiv.innerHTML = ''
         products.forEach( (product) => { productsDiv.appendChild(createDOMProduct(product)) })

@@ -16,6 +16,16 @@ const submitOrderForValidation = async (e) =>{
         surname: surname, street: street, houseNumber: houseNumber, city:city, zipCode:zipCode,
         state:state, };
     const completeData = {deliveryDetails,cart}
-    let result = await sendRequest("deliveryDetails","POST",completeData);
+    let result = await sendRequest("validateDeliveryDetails","POST",completeData);
     if(result.ok) location.href = 'summary';
+}
+
+const submitOrder = async (e) =>{
+    e.preventDefault();
+    let result = await sendRequestWithoutData("completeOrder","POST");
+    if(result.ok) {
+        deleteCart();
+        alert('úspěšně obědnáno. Hurá')
+        location.href = '/';
+    }
 }

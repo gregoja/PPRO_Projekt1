@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `STREET` varchar(100) NOT NULL,
   `TEL_NUMBER` int(11) NOT NULL,
   `ZIP_CODE` int(11) NOT NULL,
-  `STATE` varchar(100) NOT NULL,
+  `STATE` int(11) NOT NULL,
   `PHONE_PREFIX` int(11) NOT NULL,
   `USER_ID` int(11) DEFAULT NULL,
   `ORDERED` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -131,10 +131,10 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `users` (
   `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USERNAME` varchar(50) NOT NULL,
   `PASSWORD` varchar(255) NOT NULL,
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `FK-orders-user` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`USER_ID`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK-orders-users` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `order_rows`
@@ -173,7 +173,7 @@ ALTER TABLE `products`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `FK-reviews-products` FOREIGN KEY (`PRODUCT_ID`) REFERENCES `products` (`PRODUCT_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK-reviews-user` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK-reviews-users` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

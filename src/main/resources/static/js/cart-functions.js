@@ -57,7 +57,8 @@ const createDOMInCart = async () => {
     cartList.innerHTML = ''
     if(itemsFromCart.length !== 0){
         for (const [key, value] of Object.entries(itemsFromCart)) {
-            const itemWithInfo = await sendRequestWithoutData(`/products/${value.id}`,"GET");
+            let itemWithInfo = await sendRequestWithoutData(`/products/${value.id}`,"GET");
+            itemWithInfo = await itemWithInfo.json();
             Object.assign(itemWithInfo, {amount : value.ammount});
             cartList.appendChild(createDOMItem(itemWithInfo))
         }

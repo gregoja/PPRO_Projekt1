@@ -16,7 +16,7 @@ public class ProductService {
         this.repository = repository;
     }
 
-    public Optional<Product> getById(long id){
+    public Optional<Product> getById(int id){
         return repository.findById(id);
     }
 

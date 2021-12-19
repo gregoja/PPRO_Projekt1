@@ -88,6 +88,11 @@ const updateTotalInCartDOM = () => {
     document.querySelector(".cartItems").innerText=cartItems;
 }
 
+const deleteCart = () => {
+    localStorage.removeItem('cart');
+    localStorage.removeItem('sum');
+}
+
 // po kliknutí otevírá responzivniho menu. Pokud JS nepodporován, tak se o to postará noscript
 document.querySelector(".burger p").addEventListener("click", () => {
     document.querySelector('.menu_neviditelne').classList.toggle('menu_viditelne');
@@ -118,7 +123,8 @@ const sendRequestAuth = async (endpoint,method,data,token) => {
 
 const sendRequestWithoutData = async (endpoint,method,headers = { 'Content-Type': 'application/json',}) => {
     let response = await fetch(endpoint,{method: method, headers: headers});
-    return response.json();
+    return response;
+    //return response.json();
 }
 
 const sendRequestWithoutDataAuth = async (endpoint,method,token) => {

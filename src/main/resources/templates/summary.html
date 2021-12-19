@@ -61,12 +61,14 @@
                     </div>
                 </div>
             </div>
-            <form action="php/doCompleteOrder.php" method="POST">
+            <form action="completeOrder" method="POST">
                 <input class="pokracovatInp" type="submit" name="ShippingInfoSubmit" value="Pokračovat">
             </form>
             <div class="cleaner"></div>
         </div>
 
         <footer th:replace="fragments/footer :: footer"></footer>
+        <script src="js/order-functions.js" defer></script>
+        <script src="js/order.js" defer></script>
     </body>
 </html>

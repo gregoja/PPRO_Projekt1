@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "products", schema = "cukrarna", catalog = "")
 public class Product {
-    private long productId;
+    private int productId;
     private int price;
     private String name;
     private String description;
@@ -22,11 +22,11 @@ public class Product {
     @Id
     @Column(name = "PRODUCT_ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
