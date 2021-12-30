@@ -26,7 +26,7 @@ public class ProductController {
      */
     @GetMapping("/products")
     @ResponseBody
-    public List<Product> getProductsByCriteria(@RequestParam(value = "categories",required = false) String categories,
+    public List<Product> getProductsByCriteria(@RequestParam(value = "categories", required = false) String categories,
                                                @RequestParam(value = "tags", required = false) String tags,
                                                @RequestParam(value = "pageNo",required = false, defaultValue = "0") int pageNo){
         List<String> desiredCategories = new ArrayList<>();

@@ -137,3 +137,12 @@ const sendRequestWithoutDataAuth = async (endpoint,method,token) => {
 }
 
 updateTotalInCartDOM();
+
+const login = async (e) =>{
+    e.preventDefault();
+    let result = await sendRequestWithoutData("formRegisterUser","POST");
+    if(result.ok) {
+        alert('úspěšně obědnáno. Hurá')
+        location.href = '/';
+    }
+}
