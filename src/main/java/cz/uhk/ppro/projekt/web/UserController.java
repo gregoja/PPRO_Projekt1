@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping("formRegisterUser")
     @ResponseBody
-    public void formRegisterUser(@RequestParam String login) {
+    public void formRegisterUser(@RequestParam(name = "login") String login) {
         System.out.println(login);
         /*if (userService.usernameExists(list.get(0))) {
             //return "products";      // TODO: login souhlasi s jinym, vyhodit chybu
