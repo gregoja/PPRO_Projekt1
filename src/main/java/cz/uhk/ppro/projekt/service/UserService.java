@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class UserService {
@@ -33,5 +35,18 @@ public class UserService {
         userRepository.save(newUser);
 
         return newUser;
+    }
+
+    public boolean usernameExists(String username) {
+        List<User> users;
+        users = userRepository.findAll();
+        for (User user: users) {
+            if(user.getUsername().toLowerCase(Locale.ROOT).equals(username.toLowerCase(Locale.ROOT))) {
+                return true;
+            }
+        }
+
+        return false;
+
     }
 }
