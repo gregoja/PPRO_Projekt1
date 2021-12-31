@@ -1,50 +1,64 @@
 package cz.uhk.ppro.projekt.web;
 
+import cz.uhk.ppro.projekt.entity.User;
+import cz.uhk.ppro.projekt.service.PasswordAuthentication;
 import cz.uhk.ppro.projekt.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+import java.util.Base64;
+import java.util.Map;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final PasswordAuthentication passwordAuthentication;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordAuthentication passwordAuthentication) {
         this.userService = userService;
+        this.passwordAuthentication = passwordAuthentication;
     }
 
     @GetMapping("login")
-    public String renderLoginPage(){
-        return  "login";
+    public String renderLoginPage() {
+        return "login";
+    }
+
+    @GetMapping("registration")
+    public String renderRegistrationPage() {
+        return "registration";
     }
 
     @PostMapping("formRegisterUser")
     @ResponseBody
-    public void formRegisterUser(@RequestParam(name = "login") String login) {
-        System.out.println(login);
+    public User formRegisterUser(@RequestBody @Valid User user, HttpSession session) throws InvalidKeySpecException, NoSuchAlgorithmException {
         /*if (userService.usernameExists(list.get(0))) {
-            //return "products";      // TODO: login souhlasi s jinym, vyhodit chybu
-        }
+            //return "products";      // TODO: login souhlasi s jinym, vyhodit chybu přes DB
+        }*/
 
-        if (!pass.equals(passAgain)) {
-            //return "products";      // TODO: hesla nesouhlasi, vyhodit chybu
-        }
+        user.setPassword(passwordAuthentication.hash(user.getPassword().toCharArray()));
+        User newUser = userService.createUser(user);
+        session.setAttribute("userId", newUser.getUserId());
 
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[32];
-        random.nextBytes(salt);
-        KeySpec spec = new PBEKeySpec(pass.toCharArray(), salt, 65536, 1024);
-        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-        byte[] hash = factory.generateSecret(spec).getEncoded();
-        Base64.Encoder enc = Base64.getEncoder();
+        return newUser;
+    }
 
-        Date date = new Date();
-        Timestamp timestamp = new Timestamp(date.getTime());
-        User user = userService.createUser(login, enc.encodeToString(hash), timestamp);
-        session.setAttribute("userId", user.getUserId());
-        return user;*/
-        //return "login";             // TODO: kam to presmerovat, kdyz je vse v poradku?
+    @PostMapping("formLoginUser")
+    @ResponseBody
+    public void formLoginUser(@RequestBody Map<String, String> loginData) {
+        // loginData ("username" -> login, "password" -> heslo)
+        // TODO: vyhledat login
+        System.out.println(userService.findByUsername("heslo"));
+        // TODO: zkontrolovat heslo
+        // TODO: udelat nalezity krok
     }
 }

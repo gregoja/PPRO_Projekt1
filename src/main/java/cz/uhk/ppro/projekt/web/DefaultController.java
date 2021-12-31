@@ -9,7 +9,7 @@ public class DefaultController {
     @GetMapping("/index")
     public String renderIndexPage(Model model){
         //model.addAttribute("title","CUKRÁRNA U RAKVIČKY");
-        return  "products";
+        return "products";
     }
 
     @GetMapping("/")

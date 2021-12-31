@@ -1,18 +1,10 @@
 package cz.uhk.ppro.projekt.service;
 
-import cz.uhk.ppro.projekt.entity.Order;
-import cz.uhk.ppro.projekt.entity.OrderRow;
-import cz.uhk.ppro.projekt.entity.Product;
 import cz.uhk.ppro.projekt.entity.User;
-import cz.uhk.ppro.projekt.model.OrderSummary;
-import cz.uhk.ppro.projekt.repository.OrderRepository;
-import cz.uhk.ppro.projekt.repository.OrderRowRepository;
 import cz.uhk.ppro.projekt.repository.UserRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -24,17 +16,26 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    @Transactional
-    public User createUser(String username, String password, Timestamp timestamp) {
+    public User createUser(String username, String password) {
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setPassword(password);
-        newUser.setAdministrator((byte) 0);
-        newUser.setUserId(2);
-        newUser.setRegistrationTimestamp(timestamp);
         userRepository.save(newUser);
 
         return newUser;
+    }
+
+    public User createUser(User user) {
+        userRepository.save(user);
+        return user;
+    }
+
+    public List<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public User getUserById(int id) {
+        return userRepository.getById(id);
     }
 
     public boolean usernameExists(String username) {

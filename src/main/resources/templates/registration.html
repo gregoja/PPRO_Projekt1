@@ -3,17 +3,19 @@
 <head th:replace="fragments/head :: head"></head>
 <body>
 <header th:replace="fragments/header :: header"></header>
-<div>
+<div class="container">
     <div class="registrace_form">
         <div class="registrationColor">
-            <h2>PŘIHLAŠ SE:</h2>
-            <form action=formLoginUser method="POST">
+            <h2>REGISTRUJ SE:</h2>
+            <form action="formRegisterUser" method="POST">
                 <input autocomplete="off" placeholder="Jméno" type="text" name="login" required>
                 <input placeholder="Heslo" type="password" name="pass" required>
-                <input type="submit" name="doLogin" value="Přihlásit">
-                <div class="cleaner"></div>
+                <input type="password" placeholder="Heslo znovu" name="passAgain" required>
+                <p>Heslo a jméno musí obsahovat pouze písmena malé/velké abecedy bez háčků/čárek a číslice a musí mít
+                    minimálně 4 znaky!!</p>
+                <input type="submit" name="registration" value="Registruj se">
             </form>
-            <a href="registration">Nejsi Registrován? Zaregistruj se!</a>
+            <a href="login">Jsi zaregistrován? Přihlaš se!</a>
         </div>
     </div>
 </div>

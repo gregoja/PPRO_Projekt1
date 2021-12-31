@@ -108,6 +108,8 @@ for (let i = 0; i < odkazy.length; i++){
 // custom metoda, která zapouzdřuje fetch, tak aby se to dalo příjemněji používat
 const sendRequest = async (endpoint,method,data,headers = { 'Content-Type': 'application/json',}) => {
     let response = await fetch(endpoint,{method: method, headers: headers, body: JSON.stringify(data)});
+    alert(method);
+    alert(JSON.stringify(data));
     return response;
     //return response.json();
 }
