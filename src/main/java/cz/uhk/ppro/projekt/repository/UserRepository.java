@@ -9,5 +9,5 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT u FROM User u WHERE u.username = ?1")
-    List<User> findByUsername(String username);
+    User findByUsername(String username);
 }

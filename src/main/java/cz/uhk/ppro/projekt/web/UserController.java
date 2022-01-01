@@ -3,18 +3,13 @@ package cz.uhk.ppro.projekt.web;
 import cz.uhk.ppro.projekt.entity.User;
 import cz.uhk.ppro.projekt.service.PasswordAuthentication;
 import cz.uhk.ppro.projekt.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
-import java.util.Base64;
 import java.util.Map;
 
 @Controller
@@ -40,25 +35,28 @@ public class UserController {
 
     @PostMapping("formRegisterUser")
     @ResponseBody
-    public User formRegisterUser(@RequestBody @Valid User user, HttpSession session) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        /*if (userService.usernameExists(list.get(0))) {
-            //return "products";      // TODO: login souhlasi s jinym, vyhodit chybu přes DB
-        }*/
+    public User formRegisterUser(@RequestBody @Valid User user, HttpSession session) {
+        User user1 = userService.findByUsername(user.getUsername());
+        if (user1 != null) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Username did not exist!");    // TODO: spravne cislo chyby?
+        }
 
         user.setPassword(passwordAuthentication.hash(user.getPassword().toCharArray()));
         User newUser = userService.createUser(user);
-        session.setAttribute("userId", newUser.getUserId());
+        session.setAttribute("userId", newUser.getUserId());    // TODO: prihlasit uzivatele hned po zaregistrovani?
 
         return newUser;
     }
 
     @PostMapping("formLoginUser")
     @ResponseBody
-    public void formLoginUser(@RequestBody Map<String, String> loginData) {
-        // loginData ("username" -> login, "password" -> heslo)
-        // TODO: vyhledat login
-        System.out.println(userService.findByUsername("heslo"));
-        // TODO: zkontrolovat heslo
-        // TODO: udelat nalezity krok
+    public User formLoginUser(@RequestBody Map<String, String> loginData, HttpSession session) {
+        User user = userService.findByUsername(loginData.get("username"));
+        if (user != null && passwordAuthentication.authenticate(loginData.get("password").toCharArray(), user.getPassword())) {
+            session.setAttribute("userId", user.getUserId());
+            return user;
+        } else {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Username did not exist!"); // TODO: spravne cislo chyby?
+        }
     }
 }

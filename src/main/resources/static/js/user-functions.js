@@ -1,4 +1,4 @@
-const login = async (e) => {
+const register = async (e) => {
     e.preventDefault();     // TODO: zkontroluj, jesli heslo má správný tvar a jestli sedí podmínky
     const form = e.target;
     const login = form.elements.login.value;
@@ -16,5 +16,21 @@ const login = async (e) => {
             alert('Něco se pokazilo!');
             location.href = '/';
         }
+    }
+}
+
+const login = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const login = form.elements.login.value;
+    const pass = form.elements.pass.value;
+
+    const data = {username: login, password: pass};
+    let result = await sendRequest("formLoginUser", "POST", data);
+    if (result.ok) {
+        alert('Úspěšně přihlášeno!');
+        location.href = '/';
+    } else {
+        alert('Kombinace jména a hesla je neplatná!');
     }
 }

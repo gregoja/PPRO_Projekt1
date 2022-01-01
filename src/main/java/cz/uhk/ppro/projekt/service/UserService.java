@@ -30,24 +30,11 @@ public class UserService {
         return user;
     }
 
-    public List<User> findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     public User getUserById(int id) {
         return userRepository.getById(id);
-    }
-
-    public boolean usernameExists(String username) {
-        List<User> users;
-        users = userRepository.findAll();
-        for (User user: users) {
-            if(user.getUsername().toLowerCase(Locale.ROOT).equals(username.toLowerCase(Locale.ROOT))) {
-                return true;
-            }
-        }
-
-        return false;
-
     }
 }
