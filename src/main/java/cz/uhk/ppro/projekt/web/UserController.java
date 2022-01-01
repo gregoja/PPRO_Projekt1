@@ -38,7 +38,14 @@ public class UserController {
     public User formRegisterUser(@RequestBody @Valid User user, HttpSession session) {
         User user1 = userService.findByUsername(user.getUsername());
         if (user1 != null) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Username did not exist!");    // TODO: spravne cislo chyby?
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Username already exist!");    // TODO: spravne cislo chyby?
+        }
+
+        String pattern = "[a-zA-Z0-9]{4,}";
+        if (!user.getUsername().matches(pattern)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Nesprávný tvar uživatelského jména!");
+        } else if (!user.getPassword().matches(pattern)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Nesprávný tvar hesla!");
         }
 
         user.setPassword(passwordAuthentication.hash(user.getPassword().toCharArray()));

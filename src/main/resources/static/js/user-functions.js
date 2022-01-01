@@ -13,7 +13,7 @@ const register = async (e) => {
             alert('Úspěšně zaregistrováno. Hurá!');
             location.href = '/';
         } else {
-            alert('Něco se pokazilo!');
+            alert(result.statusText);
             location.href = '/';
         }
     }
