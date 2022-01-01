@@ -3,10 +3,13 @@ package cz.uhk.ppro.projekt.web;
 import cz.uhk.ppro.projekt.entity.User;
 import cz.uhk.ppro.projekt.service.PasswordAuthentication;
 import cz.uhk.ppro.projekt.service.UserService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -33,37 +36,37 @@ public class UserController {
         return "registration";
     }
 
-    @PostMapping("formRegisterUser")
+    @PostMapping("userRegistration")
     @ResponseBody
-    public User formRegisterUser(@RequestBody @Valid User user, HttpSession session) {
-        User user1 = userService.findByUsername(user.getUsername());
-        if (user1 != null) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Username already exist!");    // TODO: spravne cislo chyby?
-        }
+    public void formRegisterUser(@RequestBody @Valid Map<String, String> registerData, HttpSession session) {
 
         String pattern = "[a-zA-Z0-9]{4,}";
-        if (!user.getUsername().matches(pattern)) {
+        if (!registerData.get("username").matches(pattern)) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Nesprávný tvar uživatelského jména!");
-        } else if (!user.getPassword().matches(pattern)) {
+        } else if (!registerData.get("password").matches(pattern)) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Nesprávný tvar hesla!");
         }
 
-        user.setPassword(passwordAuthentication.hash(user.getPassword().toCharArray()));
-        User newUser = userService.createUser(user);
+        User newUser = userService.createUser(registerData.get("username"), passwordAuthentication.hash(registerData.get("password").toCharArray()));
         session.setAttribute("userId", newUser.getUserId());    // TODO: prihlasit uzivatele hned po zaregistrovani?
-
-        return newUser;
     }
 
-    @PostMapping("formLoginUser")
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<String> handleException(ConstraintViolationException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Uživatel již existuje!");
+    }
+
+    @PostMapping("userLogin")
     @ResponseBody
-    public User formLoginUser(@RequestBody Map<String, String> loginData, HttpSession session) {
+    public void formLoginUser(@RequestBody Map<String, String> loginData, HttpSession session) {
         User user = userService.findByUsername(loginData.get("username"));
+
         if (user != null && passwordAuthentication.authenticate(loginData.get("password").toCharArray(), user.getPassword())) {
             session.setAttribute("userId", user.getUserId());
-            return user;
         } else {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Username did not exist!"); // TODO: spravne cislo chyby?
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Kombinace přihlašovacího jména a hesla je neplatná!"); // TODO: spravne cislo chyby?
         }
     }
 }

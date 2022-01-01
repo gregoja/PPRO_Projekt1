@@ -4,17 +4,23 @@ const register = async (e) => {
     const login = form.elements.login.value;
     const pass = form.elements.pass.value;
     const passAgain = form.elements.passAgain.value;
+    let warningText;
     if (pass != passAgain) {
         alert("Zadaná hesla nejsou stejná!");
     } else {
-        const data = {userId: 0, username: login, password: pass, administrator: 0, registrationTimestamp: null};
-        let result = await sendRequest("formRegisterUser", "POST", data);
+        const data = {username: login, password: pass};
+        let result = await sendRequest("userRegistration", "POST", data);
         if (result.ok) {
             alert('Úspěšně zaregistrováno. Hurá!');
             location.href = '/';
         } else {
-            alert(result.statusText);
-            location.href = '/';
+            if (result.status == 409) {
+                warningText = "Uživatelské jméno je již zaregistrováno!";
+            } else {
+                warningText = result.statusText;
+            }
+
+            alert("Kód chyby: " + result.status + " - " + warningText);
         }
     }
 }
@@ -26,7 +32,7 @@ const login = async (e) => {
     const pass = form.elements.pass.value;
 
     const data = {username: login, password: pass};
-    let result = await sendRequest("formLoginUser", "POST", data);
+    let result = await sendRequest("userLogin", "POST", data);
     if (result.ok) {
         alert('Úspěšně přihlášeno!');
         location.href = '/';

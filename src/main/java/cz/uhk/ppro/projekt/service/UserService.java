@@ -21,7 +21,6 @@ public class UserService {
         newUser.setUsername(username);
         newUser.setPassword(password);
         userRepository.save(newUser);
-
         return newUser;
     }
 
