@@ -27,3 +27,6 @@ document.querySelector("select").addEventListener("change",function(){
 }
 const formReview = document.querySelector("#formReview");
 formReview.addEventListener("submit",submitReviewPost);*/
+
+const formReview = document.querySelector("form[action=\"saveReview\"]");
+if(formReview) formReview.addEventListener("submit",submitReviewPost);

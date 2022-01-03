@@ -16,8 +16,12 @@ public class ProductService {
         this.repository = repository;
     }
 
-    public Optional<Product> getById(int id){
+    public Optional<Product> findById(int id){
         return repository.findById(id);
+    }
+
+    public Product getById(int id) {
+        return repository.getById(id);
     }
 
     public List<Product> getByCriteria(List<String> desiredCategories, List<String> desiredTags, Pageable paging){

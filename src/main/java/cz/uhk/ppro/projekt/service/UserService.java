@@ -2,11 +2,7 @@ package cz.uhk.ppro.projekt.service;
 
 import cz.uhk.ppro.projekt.entity.User;
 import cz.uhk.ppro.projekt.repository.UserRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Locale;
 
 @Service
 public class UserService {

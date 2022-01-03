@@ -46,7 +46,7 @@ public class OrderController {
         List<OrderSummary.CartItem> cartItems = summary.getCart();
         int totalPrice = 0;
         for (OrderSummary.CartItem item : cartItems){
-            Product product = productService.getById(item.getId()).orElseThrow(ResourceNotFoundException::new);
+            Product product = productService.findById(item.getId()).orElseThrow(ResourceNotFoundException::new);
             totalPrice+= item.getAmmount() * product.getPrice();
             productsToBeOrdered.add(product);
         }

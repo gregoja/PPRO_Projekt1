@@ -1,5 +1,7 @@
 package cz.uhk.ppro.projekt.web.errors;
 
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +60,13 @@ public class GlobalExceptionHandler {
         }
         HttpStatus status = HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(new ErrorDetails("VALIDATION ERROR", status, errors), status);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorDetails> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        Map<String, String> errors = new LinkedHashMap<>();
+        errors.put("error", e.toString());
+        HttpStatus status = HttpStatus.CONFLICT;
+        return new ResponseEntity<>(new ErrorDetails("CONFLICT ERROR", status, errors), status);
     }
 }

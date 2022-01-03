@@ -2,8 +2,8 @@
     <header th:fragment="header">
         <div class="userPanelWrapper">
             <div class="userPanel">
-                <a href="login" class="userPanelButton loginButton" id="buttonLogin">Přihlas se/ registrace</a>
-                <a href="#" class="userPanelButton loginButton d-none"  id="buttonLogout">odhlásit se</a>
+                <a href="login" class="userPanelButton loginButton" id="buttonLogin" th:if="${session.userId == null}">Přihlas se/ registrace</a>
+                <a href="logout" class="userPanelButton loginButton"  id="buttonLogout" th:if="${session.userId != null}">odhlásit se</a>
                 <div class="cleaner"></div>
             </div>
         </div>

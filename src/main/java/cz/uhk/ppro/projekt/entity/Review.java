@@ -1,5 +1,7 @@
 package cz.uhk.ppro.projekt.entity;
 
+import cz.uhk.ppro.projekt.repository.ProductRepository;
+
 import javax.persistence.*;
 
 @Entity
@@ -83,5 +85,4 @@ public class Review {
     public void setUsersByUserId(User usersByUserId) {
         this.usersByUserId = usersByUserId;
     }
-
 }

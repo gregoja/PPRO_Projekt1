@@ -1,13 +1,20 @@
 package cz.uhk.ppro.projekt.web;
 
 import cz.uhk.ppro.projekt.entity.Product;
+import cz.uhk.ppro.projekt.entity.Review;
+import cz.uhk.ppro.projekt.entity.User;
+import cz.uhk.ppro.projekt.model.ReviewRequest;
 import cz.uhk.ppro.projekt.service.ProductService;
+import cz.uhk.ppro.projekt.service.ReviewService;
+import cz.uhk.ppro.projekt.service.UserService;
 import cz.uhk.ppro.projekt.web.errors.ResourceNotFoundException;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +22,13 @@ import java.util.List;
 @Controller
 public class ProductController {
     private final ProductService productService;
+    private final ReviewService reviewService;
+    private final UserService userService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ReviewService reviewService, UserService userService) {
         this.productService = productService;
+        this.reviewService = reviewService;
+        this.userService = userService;
     }
 
     /**
@@ -43,13 +54,53 @@ public class ProductController {
     @GetMapping(value = "/products/{id}")
     @ResponseBody
     public Product getProductById(@PathVariable int id){
-        return productService.getById(id).orElseThrow(ResourceNotFoundException::new);
+        return productService.findById(id).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @PostMapping("saveReview")
+    @ResponseBody
+    public void saveReview(@RequestBody ReviewRequest reviewRequest, HttpSession session){
+        User user = userService.getUserById((Integer) session.getAttribute("userId"));
+        Product product = productService.getById(reviewRequest.getProductId());
+        Review oldReview = reviewService.findByProductAndUser(product, user);
+        if (oldReview != null) {
+            reviewService.deleteReview(oldReview);
+        }
+
+        Review review = new Review();
+        review.setReview(reviewRequest.getText());
+        review.setStars(reviewRequest.getStars());
+        review.setProductsByProductId(product);
+        review.setUsersByUserId(user);
+        reviewService.save(review);
     }
 
     @GetMapping("/product")
-    public String getProduct(@RequestParam(value = "productId") int productId, Model model){
-        Product product = productService.getById(productId).orElseThrow(ResourceNotFoundException::new);
+    public String getProduct(@RequestParam(value = "productId") int productId, Model model, HttpSession session){
+        Product product = productService.findById(productId).orElseThrow(ResourceNotFoundException::new);
         model.addAttribute("product",product);
+        List<Review> reviews = new ArrayList<>();
+        reviews = reviewService.findByProduct(productService.getById(productId));
+
+        // presunuti review prihlaseneho uzivatele na zacatek
+        Review loginUserReview = reviewService.findByProductAndUser(product, userService.getUserById((Integer) session.getAttribute("userId")));
+        int reviewPos = reviews.indexOf(loginUserReview);
+        reviews.remove(reviewPos);
+        reviews.add(0, loginUserReview);
+
+        model.addAttribute("reviews",reviews);
         return "product";
+    }
+
+    @GetMapping("/reviews")
+    @ResponseBody
+    public ResponseEntity<List<Review>> getReviews(@RequestParam(value = "productId") int productId){
+        List<Review> reviews = new ArrayList<>();
+        reviews = reviewService.findByProduct(productService.getById(productId));
+        for (Review review:reviews) {
+            System.out.println(review.getReview());
+        }
+
+        return ResponseEntity.ok(reviews);
     }
 }

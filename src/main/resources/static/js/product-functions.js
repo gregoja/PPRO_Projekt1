@@ -5,9 +5,9 @@ const submitReviewPost = async (e) =>{
 
     const text = form.elements.text.value;
     const stars = form.elements.stars.value;
-    const data = { text: text, stars: stars, product: productId };
+    const data = { text: text, stars: stars, productId: productId };
 
-    let result = await sendRequestAuth("reviews","POST",data,token);
+    let result = await sendRequest("saveReview","POST",data);
     if(result.code == 11000){
         Swal.fire({
             icon: "info",
@@ -25,23 +25,28 @@ const submitReviewPost = async (e) =>{
             icon: "success",
             title: "Recenze úspěšně přidána",
         })
-        .then(fetchReviews)
+        .then(function() {
+            location.href = `product?productId=${productId}`
+        })
     }
 }
 
 // recenze stejně jako všechny produkty na úvodní stránce jsou načítány klientem.
 const fetchReviews = async () => {
     try{
-        const data = await sendRequestWithoutDataAuth(`/reviews?productId=${productId}`,"GET",token)
-        renderReviews(data)
+        /*let data = await sendRequestWithoutData(`/reviews?productId=${productId}`,"GET");
+        console.log(data);
+        data = await data.json();
+        console.log(data);
+        renderReviews(data);*/
     }catch(error){
-        console.log(error)
+        console.log(error);
     }
 }
 
 const renderReviews = (reviews) =>{
     const reviewDiv = document.querySelector('#reviewsDiv');
-    reviewDiv.innerHTML = ''
+    reviewDiv.innerHTML = '';
     const helpDiv = document.createElement("div");
     reviews.forEach( (review) => { 
         if(review.author._id == userId){
