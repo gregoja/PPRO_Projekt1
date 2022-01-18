@@ -1,6 +1,7 @@
 package cz.uhk.ppro.projekt.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 
 @Entity
@@ -25,6 +26,7 @@ public class User {
 
     @Basic
     @Column(name = "USERNAME", nullable = false, length = 50)
+    @Pattern(regexp = "[a-zA-Z0-9]{4,}")
     public String getUsername() {
         return username;
     }
@@ -35,6 +37,7 @@ public class User {
 
     @Basic
     @Column(name = "PASSWORD", nullable = false, length = 255)
+    @Pattern(regexp = "\\$33\\$16\\$.{43}")
     public String getPassword() {
         return password;
     }

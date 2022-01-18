@@ -13,6 +13,7 @@ const register = async (e) => {
     } else {
         const data = {username: login, password: pass};
         let result = await sendRequest("userRegistration", "POST", data);
+
         if (result.ok) {
             Swal.fire({
                 icon: "success",
@@ -21,15 +22,10 @@ const register = async (e) => {
                 location.href = `login`
             })
         } else {
-            if (result.status == 409) {
-                warningText = "Uživatelské jméno je již zaregistrováno!";
-            } else {
-                warningText = result.statusText;
-            }
-
+            result = await result.json();
             Swal.fire({
                 icon: "info",
-                title: "Kód chyby: " + result.status + " - " + warningText,
+                title: "Kód chyby: " + result.code + " - " + result.message,
             })
         }
     }

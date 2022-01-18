@@ -1,6 +1,8 @@
 package cz.uhk.ppro.projekt.web.errors;
 
-import org.hibernate.exception.ConstraintViolationException;
+import javax.validation.ConstraintViolationException;
+
+import org.apache.coyote.Response;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -68,5 +70,21 @@ public class GlobalExceptionHandler {
         errors.put("error", e.toString());
         HttpStatus status = HttpStatus.CONFLICT;
         return new ResponseEntity<>(new ErrorDetails("CONFLICT ERROR", status, errors), status);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorDetails> handleConstraintViolationException(ConstraintViolationException e) {
+        Map<String, String> errors = new LinkedHashMap<>();
+        errors.put("error", e.toString());
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        return new ResponseEntity<>(new ErrorDetails("Uživatelské jméno nesplňuje požadavky", status, errors), status);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorDetails> handleInvalidPasswordException(InvalidPasswordException e) {
+        Map<String, String> errors = new LinkedHashMap<>();
+        errors.put("error", e.toString());
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        return new ResponseEntity<>(new ErrorDetails("Heslo nesplňuje požadavky", status, errors), status);
     }
 }

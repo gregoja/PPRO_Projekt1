@@ -64,6 +64,9 @@ public final class PasswordAuthentication {
     /**
      * Hash a password for storage.
      *
+     * Pokud se provede zmena ve vyslednem hash, upravit take kontrolu pri insertu (trida User)
+     * pokud se tak stane, vsechna dosavadni hesla budou neplatna
+     *
      * @return a secure authentication token to be stored for later authentication
      */
     public String hash(char[] password) {
