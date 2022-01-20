@@ -83,10 +83,15 @@ public class ProductController {
         reviews = reviewService.findByProduct(productService.getById(productId));
 
         // presunuti review prihlaseneho uzivatele na zacatek
-        Review loginUserReview = reviewService.findByProductAndUser(product, userService.getUserById((Integer) session.getAttribute("userId")));
-        int reviewPos = reviews.indexOf(loginUserReview);
-        reviews.remove(reviewPos);
-        reviews.add(0, loginUserReview);
+        if (session.getAttribute("userId") != null) {
+            Review loginUserReview = reviewService.findByProductAndUser(product,
+                    userService.getUserById((Integer) session.getAttribute("userId")));
+            if (loginUserReview != null) {
+                int reviewPos = reviews.indexOf(loginUserReview);
+                reviews.remove(reviewPos);
+                reviews.add(0, loginUserReview);
+            }
+        }
 
         model.addAttribute("reviews",reviews);
         return "product";
