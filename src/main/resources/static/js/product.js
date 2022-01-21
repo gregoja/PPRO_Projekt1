@@ -30,3 +30,6 @@ formReview.addEventListener("submit",submitReviewPost);*/
 
 const formReview = document.querySelector("form[action=\"saveReview\"]");
 if(formReview) formReview.addEventListener("submit",submitReviewPost);
+
+const deleteReview = document.querySelector("input[name=\"deleteReview\"]");
+if(deleteReview) deleteReview.addEventListener("click", deleteReviewPost);

@@ -48,6 +48,7 @@ public class ProductController {
         if(categories != null){
             desiredCategories = Arrays.asList(categories.split(","));
         }
+
         return productService.getByCriteria(desiredCategories, desiredTags, PageRequest.of(pageNo,9));
     }
 
@@ -73,6 +74,17 @@ public class ProductController {
         review.setProductsByProductId(product);
         review.setUsersByUserId(user);
         reviewService.save(review);
+    }
+
+    @PostMapping("deleteReview")
+    @ResponseBody
+    public void deleteReview(@RequestBody Integer productId, HttpSession session) {
+        System.out.println("jou");
+        System.out.println(productId);
+        User user = userService.getUserById((Integer) session.getAttribute("userId"));
+        Product product = productService.getById(productId);
+        Review review = reviewService.findByProductAndUser(product, user);
+        reviewService.deleteReview(review);
     }
 
     @GetMapping("/product")

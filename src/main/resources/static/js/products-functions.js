@@ -46,7 +46,8 @@ const createDOMProduct = (product) => {
     return productElement
 }
 
-const fetchProducts = async () => { 
+const fetchProducts = async () => {
+    console.log("jsem tady")
     try{
         let products = await sendRequestWithoutData("/products","GET")
         products = await products.json()

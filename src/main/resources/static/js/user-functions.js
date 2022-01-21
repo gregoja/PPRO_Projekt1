@@ -4,7 +4,6 @@ const register = async (e) => {
     const login = form.elements.login.value;
     const pass = form.elements.pass.value;
     const passAgain = form.elements.passAgain.value;
-    let warningText;
     if (pass != passAgain) {
         Swal.fire({
             icon: "info",

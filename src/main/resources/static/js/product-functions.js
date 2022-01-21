@@ -6,7 +6,6 @@ const submitReviewPost = async (e) =>{
     const text = form.elements.text.value;
     const stars = form.elements.stars.value;
     const data = { text: text, stars: stars, productId: productId };
-
     let result = await sendRequest("saveReview","POST",data);
     if(result.code == 11000){
         Swal.fire({
@@ -27,6 +26,26 @@ const submitReviewPost = async (e) =>{
         })
         .then(function() {
             location.href = `product?productId=${productId}`
+        })
+    }
+}
+
+const deleteReviewPost = async (e) => {
+    e.preventDefault();
+    const data  = productId;
+    console.log(data)
+    let result = await sendRequest("deleteReview","POST",data);
+    if (result.ok) {
+        Swal.fire({
+            icon: "success",
+            title: "Recenze úspěšně odebrána",
+        }).then(function() {
+            location.href = `product?productId=${productId}`
+        })
+    } else {
+        Swal.fire({
+            icon: "info",
+            title: "Jejda, něco se pokazilo",
         })
     }
 }

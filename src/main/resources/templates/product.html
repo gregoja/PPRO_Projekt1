@@ -42,7 +42,8 @@
                     <img class="hvezdy" src='img/hvezdy_5.png' alt="hvezdy">
                 </div>
                 <div>
-                    <input type="submit" name="submitReview" value="Odešli Recenzi">
+                    <input type="submit" name="submitReview" value="Odešli recenzi">
+
                 </div>
             </div>
         </form>
@@ -54,6 +55,7 @@
                     Author review
                 </h3>
                 <img class="hvezdo" th:src="@{${'img/hvezdy_' + review.stars +'.png'}}" alt="hvezdy">
+                <input th:if="${review.usersByUserId.userId == session.userId}" type="submit" name="deleteReview" value="Smaž recenzi">
                 <div class="cleaner"></div>
                 <p th:text="${review.review}">text recenze</p>
             </div>
