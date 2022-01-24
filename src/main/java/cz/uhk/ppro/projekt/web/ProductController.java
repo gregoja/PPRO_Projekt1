@@ -64,9 +64,6 @@ public class ProductController {
         User user = userService.getUserById((Integer) session.getAttribute("userId"));
         Product product = productService.getById(reviewRequest.getProductId());
         Review oldReview = reviewService.findByProductAndUser(product, user);
-        if (oldReview != null) {
-            reviewService.deleteReview(oldReview);
-        }
 
         Review review = new Review();
         review.setReview(reviewRequest.getText());

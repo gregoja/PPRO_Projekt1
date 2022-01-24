@@ -1,9 +1,6 @@
 package cz.uhk.ppro.projekt.model;
 
-import javax.validation.constraints.NotNull;
-
 public class ReviewRequest {
-    @NotNull(message = "Recenze musí něco obsahovat")
     private String text;
     private int stars;
     private int productId;

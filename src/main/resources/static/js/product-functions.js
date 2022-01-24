@@ -7,25 +7,19 @@ const submitReviewPost = async (e) =>{
     const stars = form.elements.stars.value;
     const data = { text: text, stars: stars, productId: productId };
     let result = await sendRequest("saveReview","POST",data);
-    if(result.code == 11000){
-        Swal.fire({
-            icon: "info",
-            title: "Chyba",
-            text: "Jeden uživatel může mít pouze jednu recenzi k jednomu produktu!"
-        })
-    }else if(result.errors){
-        Swal.fire({
-            icon: "info",
-            title: "Recenze nebyla přidána",
-            text: "Upravte svou recenzi a odešlete ji znovu"
-        })
-    }else{
+    if(result.ok){
         Swal.fire({
             icon: "success",
             title: "Recenze úspěšně přidána",
         })
-        .then(function() {
-            location.href = `product?productId=${productId}`
+            .then(function() {
+                location.href = `product?productId=${productId}`
+            })
+    }else{
+        Swal.fire({
+            icon: "info",
+            title: "Recenze nebyla přidána",
+            text: "Upravte svou recenzi a odešlete ji znovu"
         })
     }
 }

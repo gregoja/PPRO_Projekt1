@@ -3,6 +3,10 @@ package cz.uhk.ppro.projekt.entity;
 import cz.uhk.ppro.projekt.repository.ProductRepository;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "reviews", schema = "cukrarna", catalog = "")
@@ -26,6 +30,8 @@ public class Review {
 
     @Basic
     @Column(name = "REVIEW", nullable = false, length = -1)
+    @NotNull(message = "You need to write something")
+    @Size(min = 1)
     public String getReview() {
         return review;
     }
@@ -36,6 +42,8 @@ public class Review {
 
     @Basic
     @Column(name = "STARS", nullable = false)
+    @Min(1)
+    @Max(5)
     public int getStars() {
         return stars;
     }
