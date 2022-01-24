@@ -137,3 +137,24 @@ const sendRequestWithoutDataAuth = async (endpoint,method,token) => {
 }
 
 updateTotalInCartDOM();
+
+const logoutUser = async () => {
+    let result = await sendRequestWithoutData("logout", "POST");
+    if (result.ok) {
+        Swal.fire({
+            icon: "success",
+            title: "Byly jste odhlášeni",
+        }).then(function () {
+            location.reload();
+        })
+    } else {
+        Swal.fire({
+            icon: "info",
+            title: "Jejda, něco se pokazilo",
+        })
+    }
+}
+
+const userLogout = document.querySelector("#buttonLogout");
+if(userLogout) userLogout.addEventListener("click", logoutUser);
+

@@ -33,7 +33,6 @@ const submitReviewPost = async (e) =>{
 const deleteReviewPost = async (e) => {
     e.preventDefault();
     const data  = productId;
-    console.log(data)
     let result = await sendRequest("deleteReview","POST",data);
     if (result.ok) {
         Swal.fire({

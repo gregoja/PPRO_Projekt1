@@ -79,19 +79,19 @@ public class ProductController {
     @PostMapping("deleteReview")
     @ResponseBody
     public void deleteReview(@RequestBody Integer productId, HttpSession session) {
-        System.out.println("jou");
-        System.out.println(productId);
         User user = userService.getUserById((Integer) session.getAttribute("userId"));
         Product product = productService.getById(productId);
         Review review = reviewService.findByProductAndUser(product, user);
-        reviewService.deleteReview(review);
+        if (review != null) {
+            reviewService.deleteReview(review);
+        }
     }
 
     @GetMapping("/product")
     public String getProduct(@RequestParam(value = "productId") int productId, Model model, HttpSession session){
         Product product = productService.findById(productId).orElseThrow(ResourceNotFoundException::new);
         model.addAttribute("product",product);
-        List<Review> reviews = new ArrayList<>();
+        List<Review> reviews;
         reviews = reviewService.findByProduct(productService.getById(productId));
 
         // presunuti review prihlaseneho uzivatele na zacatek
@@ -112,11 +112,8 @@ public class ProductController {
     @GetMapping("/reviews")
     @ResponseBody
     public ResponseEntity<List<Review>> getReviews(@RequestParam(value = "productId") int productId){
-        List<Review> reviews = new ArrayList<>();
+        List<Review> reviews;
         reviews = reviewService.findByProduct(productService.getById(productId));
-        for (Review review:reviews) {
-            System.out.println(review.getReview());
-        }
 
         return ResponseEntity.ok(reviews);
     }

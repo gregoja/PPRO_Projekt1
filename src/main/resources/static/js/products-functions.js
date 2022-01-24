@@ -1,5 +1,4 @@
 const createDOMProduct = (product) => {
-    console.log(product);
     const productElement = document.createElement("div");
     productElement.setAttribute("class","card col-sm-12 col-md-6 col-xl-4");
     productElement.setAttribute("style","width: 18rem");
@@ -47,7 +46,6 @@ const createDOMProduct = (product) => {
 }
 
 const fetchProducts = async () => {
-    console.log("jsem tady")
     try{
         let products = await sendRequestWithoutData("/products","GET")
         products = await products.json()

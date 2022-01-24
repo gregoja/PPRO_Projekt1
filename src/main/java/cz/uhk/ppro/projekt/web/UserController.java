@@ -4,17 +4,15 @@ import cz.uhk.ppro.projekt.entity.User;
 import cz.uhk.ppro.projekt.service.PasswordAuthentication;
 import cz.uhk.ppro.projekt.service.PasswordValidator;
 import cz.uhk.ppro.projekt.service.UserService;
-import cz.uhk.ppro.projekt.web.errors.InvalidPasswordException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.*;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 @Controller
 public class UserController {
@@ -32,10 +30,10 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("logout")
-    public String logoutUser(HttpSession session) {
+    @PostMapping("logout")
+    public ResponseEntity logoutUser(HttpSession session) {
         session.removeAttribute("userId");
-        return "login";
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("registration")
@@ -47,7 +45,6 @@ public class UserController {
     @PostMapping("userRegistration")
     @ResponseBody
     public void formRegisterUser(@RequestBody @Valid Map<String, String> registerData){
-
         PasswordValidator.isPasswordValid(registerData.get("password"));
         User user = userService.createUser(registerData.get("username"),
                 passwordAuthentication.hash(registerData.get("password").toCharArray()));

@@ -71,7 +71,7 @@ public class OrderController {
         OrderSummary summary = (OrderSummary) session.getAttribute("orderSummary");
         List<Product> productsToBeOrdered = (List<Product>) session.getAttribute("productsToBeOrdered");
         if(summary == null || productsToBeOrdered == null) throw new InsufficientResourcesException();
-        orderService.save(summary, productsToBeOrdered);
+        orderService.save(summary, productsToBeOrdered, session);
         session.removeAttribute("orderSummary");
         session.removeAttribute("productsToBeOrdered");
     }
