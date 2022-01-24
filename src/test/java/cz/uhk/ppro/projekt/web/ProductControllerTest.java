@@ -20,23 +20,26 @@ import javax.transaction.Transactional;
 @Transactional
 public class ProductControllerTest {
 
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private ProductRepository productRepository;
-
-    @Autowired
     private ProductController productController;
-
-    @Autowired
     private ReviewService reviewService;
-
-    @Autowired
     private HttpSession session;
-
-    @Autowired
     private PasswordAuthentication passwordAuthentication;
+
+    public ProductControllerTest(UserService userService,
+                                 ProductRepository productRepository,
+                                 ProductController productController,
+                                 ReviewService reviewService,
+                                 HttpSession session,
+                                 PasswordAuthentication passwordAuthentication) {
+        this.userService = userService;
+        this.productRepository = productRepository;
+        this.productController = productController;
+        this.reviewService = reviewService;
+        this.session = session;
+        this.passwordAuthentication = passwordAuthentication;
+    }
 
     @Test
     void saveReviewTest () {

@@ -3,9 +3,6 @@ package cz.uhk.ppro.projekt.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-//TODO pred odevzdanim projektu projet vsechny entity a ujistit se, ze hashCode a Equals a ToString obsahuji
-// vsechny parametry
-
 @Entity
 @Table(name = "products", schema = "cukrarna", catalog = "")
 public class Product {

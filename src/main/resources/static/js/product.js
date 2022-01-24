@@ -1,10 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('productId');
 let userReview = null;
-/*if(token){
-    document.querySelector(".reviewsDivWarning").classList.add("d-none");
-    document.querySelector(".reviewsDiv").classList.remove("d-none");
-}*/
 
 const form = document.querySelector("#formAddToCart");
 document.querySelector("#koupit").addEventListener("click", () => {
@@ -22,12 +18,6 @@ document.querySelector("select").addEventListener("change",function(){
 });
 
 /*REVIEWS*/
-/*if(token){
-    fetchReviews();
-}
-const formReview = document.querySelector("#formReview");
-formReview.addEventListener("submit",submitReviewPost);*/
-
 const formReview = document.querySelector("form[action=\"saveReview\"]");
 if(formReview) formReview.addEventListener("submit",submitReviewPost);
 

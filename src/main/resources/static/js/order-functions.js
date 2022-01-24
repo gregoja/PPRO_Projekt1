@@ -25,7 +25,16 @@ const submitOrder = async (e) =>{
     let result = await sendRequestWithoutData("completeOrder","POST");
     if(result.ok) {
         deleteCart();
-        alert('úspěšně obědnáno. Hurá')
-        location.href = '/';
+        Swal.fire({
+            icon: "success",
+            title: "Úpěšně obědnáno. Hurá!",
+        }).then(function () {
+            location.href = `/`;
+        })
+    } else {
+        Swal.fire({
+            icon: "info",
+            title: "Ajeje, něco se pokazilo."
+        })
     }
 }

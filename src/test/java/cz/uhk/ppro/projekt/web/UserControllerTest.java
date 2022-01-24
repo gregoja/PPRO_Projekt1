@@ -4,11 +4,9 @@ import cz.uhk.ppro.projekt.entity.User;
 import cz.uhk.ppro.projekt.service.PasswordAuthentication;
 import cz.uhk.ppro.projekt.service.PasswordValidator;
 import cz.uhk.ppro.projekt.service.UserService;
-import cz.uhk.ppro.projekt.web.UserController;
 import cz.uhk.ppro.projekt.web.errors.InvalidPasswordException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -21,17 +19,20 @@ import java.util.Map;
 @Transactional
 public class UserControllerTest {
 
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private UserController userController;
-
-    @Autowired
     private PasswordAuthentication passwordAuthentication;
-
-    @Autowired
     private HttpSession session;
+
+    public UserControllerTest(UserService userService,
+                              UserController userController,
+                              PasswordAuthentication passwordAuthentication,
+                              HttpSession session) {
+        this.userService = userService;
+        this.userController = userController;
+        this.passwordAuthentication = passwordAuthentication;
+        this.session = session;
+    }
 
     @Test
     void userOk() {

@@ -1,27 +1,3 @@
-//const token = localStorage.getItem("token");
-
-//const buttonLogin = document.querySelector("#buttonLogin");
-//const buttonLogout = document.querySelector("#buttonLogout");
-//// uzivatel prihlasen?
-//if(token){
-//    // rozbij token a base64 "desifruj" uzivatelovo id.
-//    const userJSON = window.atob(token.split(".")[1]);
-//    var userId = JSON.parse(userJSON)._id;
-//    // stará se o ukázání se správného tlačítka (odhlašování/přihlašování)
-//    buttonLogin.classList.add("d-none");
-//    buttonLogout.classList.remove("d-none");
-//}
-//// odhlasovani
-//buttonLogout.addEventListener("click", async ()=>{
-//    try{
-//        await sendRequestWithoutDataAuth("users/logout","POST",token)
-//        localStorage.removeItem("token");
-//        location.reload();
-//    }catch(error){
-//        console.log(error)
-//    }
-//})
-
 // získá obsah košíku z local Storage
 const getItemsFromCart = () => {
     let items = []
