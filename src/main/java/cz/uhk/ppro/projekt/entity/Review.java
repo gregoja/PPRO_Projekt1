@@ -1,7 +1,5 @@
 package cz.uhk.ppro.projekt.entity;
 
-import cz.uhk.ppro.projekt.repository.ProductRepository;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
