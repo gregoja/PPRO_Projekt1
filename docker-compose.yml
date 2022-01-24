@@ -1,15 +1,32 @@
-version: "3"
-services:
-  web:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      - JDBC_URL=jdbc:mysql://localhost:3306/cukrarna?user=root?password=
+version: "3.8"
 
+services:
   db:
-    image: "mysql:10.7"
+    image: mysql:5.7
+    restart: unless-stopped
     environment:
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=cukrarna
     ports:
-      - "3306:3306"
+      - 3306:3306
+    volumes:
+      - "./DBconfig/01_STRUKTURA.sql:/docker-entrypoint-initdb.d/01_STRUKTURA.sql"
+      - "./DBconfig/03_DATA.sql:/docker-entrypoint-initdb.d/02_DATA.sql"
+      - "./DBconfig/02_VIEWS_PROCEDURES_STRIGGERS.sql:/docker-entrypoint-initdb.d/03_VIEWS_PROCEDURES_STRIGGERS.sql"
+
+  app:
+    depends_on:
+      - db
+    build: .
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://db:3306/cukrarna?useSSL=false",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "root",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    stdin_open: true
+    tty: true
