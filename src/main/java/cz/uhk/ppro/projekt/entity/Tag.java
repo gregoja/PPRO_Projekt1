@@ -1,7 +1,6 @@
 package cz.uhk.ppro.projekt.entity;
 
 import javax.persistence.*;
-import javax.persistence.criteria.Expression;
 
 @Entity
 @Table(name = "tags", schema = "cukrarna", catalog = "")

@@ -2,7 +2,6 @@ package cz.uhk.ppro.projekt.web.errors;
 
 import javax.validation.ConstraintViolationException;
 
-import org.apache.coyote.Response;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
